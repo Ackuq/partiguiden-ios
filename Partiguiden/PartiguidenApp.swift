@@ -1,17 +1,19 @@
-//
-//  PartiguidenApp.swift
-//  Partiguiden
-//
-//  Created by Axel Pettersson on 2022-03-03.
-//
-
 import SwiftUI
 
 @main
 struct PartiguidenApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabNavigator()
         }
+    }
+}
+
+struct PartiguidenApp_Previews: PreviewProvider {
+    static var previews: some View {
+        TabNavigator()
+            .preferredColorScheme(.light)
+        TabNavigator()
+            .preferredColorScheme(.dark)
     }
 }

@@ -8,12 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		779760F227D13F3A008E8559 /* PartiguidenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779760F127D13F3A008E8559 /* PartiguidenApp.swift */; };
-		779760F427D13F3A008E8559 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779760F327D13F3A008E8559 /* ContentView.swift */; };
+		779760F427D13F3A008E8559 /* SubjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779760F327D13F3A008E8559 /* SubjectsView.swift */; };
 		779760F627D13F3A008E8559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 779760F527D13F3A008E8559 /* Assets.xcassets */; };
-		779760F927D13F3A008E8559 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 779760F827D13F3A008E8559 /* Preview Assets.xcassets */; };
 		7797610327D13F3A008E8559 /* PartiguidenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797610227D13F3A008E8559 /* PartiguidenTests.swift */; };
 		7797610D27D13F3A008E8559 /* PartiguidenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797610C27D13F3A008E8559 /* PartiguidenUITests.swift */; };
 		7797610F27D13F3A008E8559 /* PartiguidenUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797610E27D13F3A008E8559 /* PartiguidenUITestsLaunchTests.swift */; };
+		7797612127D143BE008E8559 /* TabNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797612027D143BE008E8559 /* TabNavigator.swift */; };
+		7797612327D1458C008E8559 /* PartiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797612227D1458C008E8559 /* PartiesView.swift */; };
+		7797612727D154E1008E8559 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797612627D154E1008E8559 /* ApiManager.swift */; };
+		7797612A27D15F16008E8559 /* Subjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797612927D15F16008E8559 /* Subjects.swift */; };
+		7797612D27D172FD008E8559 /* StandpointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797612C27D172FD008E8559 /* StandpointsView.swift */; };
+		7797612F27D17B1A008E8559 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797612E27D17B1A008E8559 /* LoadingView.swift */; };
+		7797613227D2A7A3008E8559 /* PartyStandpointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797613127D2A7A3008E8559 /* PartyStandpointView.swift */; };
+		7797613627D2AD58008E8559 /* PartyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797613527D2AD58008E8559 /* PartyManager.swift */; };
+		7797613827D2AF23008E8559 /* Party.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797613727D2AF23008E8559 /* Party.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,14 +44,23 @@
 /* Begin PBXFileReference section */
 		779760EE27D13F3A008E8559 /* Partiguiden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Partiguiden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		779760F127D13F3A008E8559 /* PartiguidenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartiguidenApp.swift; sourceTree = "<group>"; };
-		779760F327D13F3A008E8559 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		779760F327D13F3A008E8559 /* SubjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectsView.swift; sourceTree = "<group>"; };
 		779760F527D13F3A008E8559 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		779760F827D13F3A008E8559 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		779760FE27D13F3A008E8559 /* PartiguidenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PartiguidenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7797610227D13F3A008E8559 /* PartiguidenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartiguidenTests.swift; sourceTree = "<group>"; };
 		7797610827D13F3A008E8559 /* PartiguidenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PartiguidenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7797610C27D13F3A008E8559 /* PartiguidenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartiguidenUITests.swift; sourceTree = "<group>"; };
 		7797610E27D13F3A008E8559 /* PartiguidenUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartiguidenUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7797612027D143BE008E8559 /* TabNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigator.swift; sourceTree = "<group>"; };
+		7797612227D1458C008E8559 /* PartiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartiesView.swift; sourceTree = "<group>"; };
+		7797612627D154E1008E8559 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		7797612927D15F16008E8559 /* Subjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subjects.swift; sourceTree = "<group>"; };
+		7797612B27D16D04008E8559 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7797612C27D172FD008E8559 /* StandpointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandpointsView.swift; sourceTree = "<group>"; };
+		7797612E27D17B1A008E8559 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		7797613127D2A7A3008E8559 /* PartyStandpointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyStandpointView.swift; sourceTree = "<group>"; };
+		7797613527D2AD58008E8559 /* PartyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyManager.swift; sourceTree = "<group>"; };
+		7797613727D2AF23008E8559 /* Party.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Party.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,20 +111,14 @@
 		779760F027D13F3A008E8559 /* Partiguiden */ = {
 			isa = PBXGroup;
 			children = (
+				7797612B27D16D04008E8559 /* Info.plist */,
+				7797612827D15EFE008E8559 /* structs */,
+				7797612427D154B1008E8559 /* managers */,
+				7797611B27D13FCE008E8559 /* views */,
 				779760F127D13F3A008E8559 /* PartiguidenApp.swift */,
-				779760F327D13F3A008E8559 /* ContentView.swift */,
 				779760F527D13F3A008E8559 /* Assets.xcassets */,
-				779760F727D13F3A008E8559 /* Preview Content */,
 			);
 			path = Partiguiden;
-			sourceTree = "<group>";
-		};
-		779760F727D13F3A008E8559 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				779760F827D13F3A008E8559 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		7797610127D13F3A008E8559 /* PartiguidenTests */ = {
@@ -125,6 +136,61 @@
 				7797610E27D13F3A008E8559 /* PartiguidenUITestsLaunchTests.swift */,
 			);
 			path = PartiguidenUITests;
+			sourceTree = "<group>";
+		};
+		7797611B27D13FCE008E8559 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				7797613027D2A781008E8559 /* components */,
+				7797611D27D13FEB008E8559 /* screen */,
+				7797611C27D13FD9008E8559 /* navigation */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		7797611C27D13FD9008E8559 /* navigation */ = {
+			isa = PBXGroup;
+			children = (
+				7797612027D143BE008E8559 /* TabNavigator.swift */,
+			);
+			path = navigation;
+			sourceTree = "<group>";
+		};
+		7797611D27D13FEB008E8559 /* screen */ = {
+			isa = PBXGroup;
+			children = (
+				779760F327D13F3A008E8559 /* SubjectsView.swift */,
+				7797612C27D172FD008E8559 /* StandpointsView.swift */,
+				7797612227D1458C008E8559 /* PartiesView.swift */,
+				7797612E27D17B1A008E8559 /* LoadingView.swift */,
+			);
+			path = screen;
+			sourceTree = "<group>";
+		};
+		7797612427D154B1008E8559 /* managers */ = {
+			isa = PBXGroup;
+			children = (
+				7797612627D154E1008E8559 /* ApiManager.swift */,
+				7797613527D2AD58008E8559 /* PartyManager.swift */,
+			);
+			path = managers;
+			sourceTree = "<group>";
+		};
+		7797612827D15EFE008E8559 /* structs */ = {
+			isa = PBXGroup;
+			children = (
+				7797612927D15F16008E8559 /* Subjects.swift */,
+				7797613727D2AF23008E8559 /* Party.swift */,
+			);
+			path = structs;
+			sourceTree = "<group>";
+		};
+		7797613027D2A781008E8559 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				7797613127D2A7A3008E8559 /* PartyStandpointView.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,7 +297,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				779760F927D13F3A008E8559 /* Preview Assets.xcassets in Resources */,
 				779760F627D13F3A008E8559 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,8 +322,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				779760F427D13F3A008E8559 /* ContentView.swift in Sources */,
+				7797613627D2AD58008E8559 /* PartyManager.swift in Sources */,
+				7797612A27D15F16008E8559 /* Subjects.swift in Sources */,
+				7797613827D2AF23008E8559 /* Party.swift in Sources */,
+				7797612727D154E1008E8559 /* ApiManager.swift in Sources */,
+				779760F427D13F3A008E8559 /* SubjectsView.swift in Sources */,
+				7797612127D143BE008E8559 /* TabNavigator.swift in Sources */,
+				7797612D27D172FD008E8559 /* StandpointsView.swift in Sources */,
+				7797612F27D17B1A008E8559 /* LoadingView.swift in Sources */,
 				779760F227D13F3A008E8559 /* PartiguidenApp.swift in Sources */,
+				7797612327D1458C008E8559 /* PartiesView.swift in Sources */,
+				7797613227D2A7A3008E8559 /* PartyStandpointView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +373,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				API_BASE_URL = "https://beta.partiguiden.nu/api/";
+				BACKEND_BASE_URL = "https://backend-staging.partiguiden.se/";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -360,6 +436,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				API_BASE_URL = "https://partiguiden.nu/api/";
+				BACKEND_BASE_URL = "https://backend.partiguiden.se/";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -414,13 +492,16 @@
 		7797611327D13F3A008E8559 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_BASE_URL = "https://beta.partiguiden.nu/api";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BACKEND_BASE_URL = "https://backend-staging.partiguiden.se";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Partiguiden/Preview Content\"";
+				DEVELOPMENT_TEAM = 47QNG3VKWN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Partiguiden/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -442,13 +523,16 @@
 		7797611427D13F3A008E8559 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_BASE_URL = "https://partiguiden.nu/api";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BACKEND_BASE_URL = "https://backend.partiguiden.se";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Partiguiden/Preview Content\"";
+				DEVELOPMENT_TEAM = 47QNG3VKWN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Partiguiden/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
