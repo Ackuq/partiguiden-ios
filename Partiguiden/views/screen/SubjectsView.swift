@@ -1,31 +1,22 @@
 import SwiftUI
 
 struct SubjectsView: View {
-    @State var subjects = [SubjectListEntry]()
-    
+    @ObservedObject var viewModel = APIViewModel(loader: ApiManager.shared.getSubjects())
+
     var body: some View {
-        NavigationView {
-            if !subjects.isEmpty {
+        AsyncContentView(source: viewModel) {
+            subjects in
+            NavigationView {
                 List(subjects) { subject in
                     NavigationLink(destination: StandpointsView(id: subject.id, name: subject.name)) {
                         HStack {
                             Text(subject.name).font(.body)
                         }
                     }
-                    
                 }
                 .navigationTitle("Ståndpunkter")
-                .navigationBarTitleDisplayMode(.large)
-            } else {
-                LoadingView()
             }
-            
         }
-        .onAppear(perform: {
-            ApiManager.shared.getSubjects { (subjects) in
-                self.subjects = subjects
-            }
-        })
     }
 }
 

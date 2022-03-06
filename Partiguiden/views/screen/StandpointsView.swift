@@ -10,32 +10,30 @@ import SwiftUI
 struct StandpointsView: View {
     var id: Int
     var name: String
-    
-    @State var subject: Subject? = nil
-    
+    @ObservedObject var viewModel: APIViewModel<Subject>
+
+    init(id: Int, name: String) {
+        self.id = id
+        self.name = name
+        viewModel = APIViewModel(loader: ApiManager.shared.getSubject(endpoint: EndpointCases.getSubject(id: id)))
+    }
+
     var body: some View {
-        NavigationView{
-            if subject != nil {
-                ScrollView{
-                    ForEach(subject!.standpoints) { standpoint in
-                        PartyStandpointView(standpoint: standpoint)
-                    }}
-            } else {
-                LoadingView()
-            }
-        }
-        .navigationTitle(name)
-        .onAppear(perform: {
-            ApiManager.shared.getSubject(
-                endpoint: EndpointCases.getSubject(id: id)) { subject in
-                    self.subject = subject
+        AsyncContentView(source: viewModel) { subject in
+            let partyStandpoints = PartyManager.createStandpointsMap(standpoints: subject.standpoints)
+            ScrollView {
+                ForEach(partyStandpoints.keys.sorted(), id: \.self) { party in
+                    PartyStandpointView(party: party, standpoints: partyStandpoints[party]!)
                 }
-        })
+            }
+        }.navigationTitle(self.name)
     }
 }
 
 struct StandpointsView_Previews: PreviewProvider {
     static var previews: some View {
-        StandpointsView(id: 2, name: "Test")
+        NavigationView {
+            StandpointsView(id: 2, name: "Test")
+        }
     }
 }

@@ -11,16 +11,14 @@ struct TabNavigator: View {
     init() {
         UITabBar.appearance().tintColor = UIColor(named: "AccentColor")
         UITabBar.appearance().backgroundColor = UIColor(named: "TabBackgroundColor")
-        
     }
-    
-    var body : some View {
+
+    var body: some View {
         TabView {
             SubjectsView()
-                .tabItem{
+                .tabItem {
                     Image(systemName: "text.book.closed")
                     Text("Ståndpunkter")
-                    
                 }
             PartiesView()
                 .tabItem {
@@ -30,7 +28,6 @@ struct TabNavigator: View {
         }
     }
 }
-
 
 struct TabNavigator_Previews: PreviewProvider {
     static var previews: some View {

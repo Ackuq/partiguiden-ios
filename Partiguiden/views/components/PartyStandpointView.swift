@@ -9,31 +9,38 @@ import SwiftUI
 
 struct PartyStandpointView: View {
     @State private var collapsed: Bool = false
-    
+
     private var partyInfo: PartyInfo
-    private var standpoint: Standpoint
-    
-    init(standpoint: Standpoint) {
-        self.partyInfo = PartyManager.partyLetterDict[standpoint.party.uppercased()]!
-        self.standpoint = standpoint
+    private var standpoints: [Standpoint]
+
+    init(party: String, standpoints: [Standpoint]) {
+        partyInfo = PartyManager.partyLetterDict[party.uppercased()]!
+        self.standpoints = standpoints
     }
-    
+
     var body: some View {
         content
             .padding(.horizontal, 20)
     }
-    
+
     private var content: some View {
         VStack(alignment: .leading, spacing: 8) {
             header
             if collapsed {
                 Group {
-                    ForEach(self.standpoint.content, id: \.self) { content in
-                        HStack {
-                            Rectangle().foregroundColor(partyInfo.color).frame(width: 10, height: 10).padding(.trailing, 5)
-                            Text(content)
-                            .fixedSize(horizontal: false, vertical: true)}
-                        
+                    ForEach(self.standpoints) { standpoint in
+                        Divider()
+                        Text(standpoint.title)
+                            .font(.headline)
+                        ForEach(standpoint.content, id: \.self) { content in
+                            HStack(alignment: .top) {
+                                Rectangle().foregroundColor(partyInfo.color).frame(width: 10, height: 10).padding(.vertical, 7.5)
+                                Text(content)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                        }
+                        Link("Läs mer på partiets hemsida", destination: URL(string: standpoint.link)!)
+                            .foregroundColor(partyInfo.color)
                     }
                 }
                 .padding(.leading, 10)
@@ -41,9 +48,9 @@ struct PartyStandpointView: View {
             Divider()
         }
     }
-    
+
     private var header: some View {
-        Button (
+        Button(
             action: {
                 withAnimation(Animation.easeInOut) {
                     self.collapsed.toggle()
@@ -66,14 +73,26 @@ struct PartyStandpointView: View {
 
 struct PartyStandpointView_Previews: PreviewProvider {
     static var previews: some View {
-        PartyStandpointView(standpoint: Standpoint(
-            id: "asd",
-            title: "Test",
-            content: ["test content ajdsjsal  jalsjdlk j asdjkljakl j asldjlasj", "asdasd asd  asd"],
-            date: "",
-            link: "url",
-            party: "S",
-            subject: 1)
-        )
+        PartyStandpointView(party: "S", standpoints:
+            [
+                Standpoint(
+                    id: "asd",
+                    title: "Test",
+                    content: ["test content ajdsjsal  jalsjdlk j asdjkljakl j asldjlasj", "asdasd asd  asd"],
+                    date: "",
+                    link: "url",
+                    party: "S",
+                    subject: 1
+                ),
+                Standpoint(
+                    id: "asd2",
+                    title: "Test2",
+                    content: ["test content2 ajdsjsal  jalsjdlk j asdjkljakl j asldjlasj", "asdasd asd  asd"],
+                    date: "",
+                    link: "url",
+                    party: "S",
+                    subject: 1
+                ),
+            ])
     }
 }

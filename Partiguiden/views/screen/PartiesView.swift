@@ -7,10 +7,19 @@
 
 import SwiftUI
 
-
 struct PartiesView: View {
     var body: some View {
-        Text("Hello").padding()
+        NavigationView {
+            List(PartyManager.parties, id: \.letter) { party in
+                NavigationLink(destination: PartyView(partyInfo: party)) {
+                    HStack {
+                        party.image.resizable().frame(width: 40, height: 40)
+                        Text(party.name)
+                    }
+                }
+            }
+            .navigationTitle("Partier")
+        }
     }
 }
 

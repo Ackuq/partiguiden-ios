@@ -18,10 +18,15 @@
 		7797612727D154E1008E8559 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797612627D154E1008E8559 /* ApiManager.swift */; };
 		7797612A27D15F16008E8559 /* Subjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797612927D15F16008E8559 /* Subjects.swift */; };
 		7797612D27D172FD008E8559 /* StandpointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797612C27D172FD008E8559 /* StandpointsView.swift */; };
-		7797612F27D17B1A008E8559 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797612E27D17B1A008E8559 /* LoadingView.swift */; };
 		7797613227D2A7A3008E8559 /* PartyStandpointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797613127D2A7A3008E8559 /* PartyStandpointView.swift */; };
 		7797613627D2AD58008E8559 /* PartyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797613527D2AD58008E8559 /* PartyManager.swift */; };
 		7797613827D2AF23008E8559 /* Party.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797613727D2AF23008E8559 /* Party.swift */; };
+		77B7C3B527D54212007C7927 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7C3B427D54212007C7927 /* LoadingView.swift */; };
+		77B7C3B727D5450C007C7927 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7C3B627D5450C007C7927 /* AsyncContentView.swift */; };
+		77B7C3B927D55A79007C7927 /* APIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7C3B827D55A79007C7927 /* APIViewModel.swift */; };
+		77C0E41627D3D12B009326EA /* PartyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C0E41527D3D12B009326EA /* PartyView.swift */; };
+		77C0E41827D3D2A7009326EA /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C0E41727D3D2A7009326EA /* Member.swift */; };
+		77C0E41C27D40ED2009326EA /* HTMLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C0E41B27D40ED2009326EA /* HTMLView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,10 +62,15 @@
 		7797612927D15F16008E8559 /* Subjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subjects.swift; sourceTree = "<group>"; };
 		7797612B27D16D04008E8559 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7797612C27D172FD008E8559 /* StandpointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandpointsView.swift; sourceTree = "<group>"; };
-		7797612E27D17B1A008E8559 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		7797613127D2A7A3008E8559 /* PartyStandpointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyStandpointView.swift; sourceTree = "<group>"; };
 		7797613527D2AD58008E8559 /* PartyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyManager.swift; sourceTree = "<group>"; };
 		7797613727D2AF23008E8559 /* Party.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Party.swift; sourceTree = "<group>"; };
+		77B7C3B427D54212007C7927 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		77B7C3B627D5450C007C7927 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
+		77B7C3B827D55A79007C7927 /* APIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIViewModel.swift; sourceTree = "<group>"; };
+		77C0E41527D3D12B009326EA /* PartyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyView.swift; sourceTree = "<group>"; };
+		77C0E41727D3D2A7009326EA /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		77C0E41B27D40ED2009326EA /* HTMLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,7 +172,7 @@
 				779760F327D13F3A008E8559 /* SubjectsView.swift */,
 				7797612C27D172FD008E8559 /* StandpointsView.swift */,
 				7797612227D1458C008E8559 /* PartiesView.swift */,
-				7797612E27D17B1A008E8559 /* LoadingView.swift */,
+				77C0E41527D3D12B009326EA /* PartyView.swift */,
 			);
 			path = screen;
 			sourceTree = "<group>";
@@ -181,6 +191,7 @@
 			children = (
 				7797612927D15F16008E8559 /* Subjects.swift */,
 				7797613727D2AF23008E8559 /* Party.swift */,
+				77C0E41727D3D2A7009326EA /* Member.swift */,
 			);
 			path = structs;
 			sourceTree = "<group>";
@@ -188,7 +199,11 @@
 		7797613027D2A781008E8559 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				77B7C3B827D55A79007C7927 /* APIViewModel.swift */,
+				77B7C3B627D5450C007C7927 /* AsyncContentView.swift */,
 				7797613127D2A7A3008E8559 /* PartyStandpointView.swift */,
+				77C0E41B27D40ED2009326EA /* HTMLView.swift */,
+				77B7C3B427D54212007C7927 /* LoadingView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -325,14 +340,19 @@
 				7797613627D2AD58008E8559 /* PartyManager.swift in Sources */,
 				7797612A27D15F16008E8559 /* Subjects.swift in Sources */,
 				7797613827D2AF23008E8559 /* Party.swift in Sources */,
+				77B7C3B927D55A79007C7927 /* APIViewModel.swift in Sources */,
 				7797612727D154E1008E8559 /* ApiManager.swift in Sources */,
 				779760F427D13F3A008E8559 /* SubjectsView.swift in Sources */,
+				77B7C3B527D54212007C7927 /* LoadingView.swift in Sources */,
 				7797612127D143BE008E8559 /* TabNavigator.swift in Sources */,
 				7797612D27D172FD008E8559 /* StandpointsView.swift in Sources */,
-				7797612F27D17B1A008E8559 /* LoadingView.swift in Sources */,
+				77C0E41C27D40ED2009326EA /* HTMLView.swift in Sources */,
+				77C0E41827D3D2A7009326EA /* Member.swift in Sources */,
+				77C0E41627D3D12B009326EA /* PartyView.swift in Sources */,
 				779760F227D13F3A008E8559 /* PartiguidenApp.swift in Sources */,
 				7797612327D1458C008E8559 /* PartiesView.swift in Sources */,
 				7797613227D2A7A3008E8559 /* PartyStandpointView.swift in Sources */,
+				77B7C3B727D5450C007C7927 /* AsyncContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
