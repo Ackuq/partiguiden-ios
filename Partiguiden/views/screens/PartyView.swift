@@ -33,15 +33,18 @@ struct PartyView: View {
                         }
                     }
                     Divider()
-                    Text("Ideologi").font(.headline)
-                    Text(partyData.ideology.joined(separator: ", "))
-                    HStack {
-                        Text("Källa:")
-                        Link("https://wikipedia.se", destination: URL(string: "https://wikipedia.se")!)
+                    Section(header: Text("Ideologi").font(.headline)) {
+                        Text(partyData.ideology.joined(separator: ", "))
+                        HStack {
+                            Text("Källa:")
+                            Link("https://wikipedia.se", destination: URL(string: "https://wikipedia.se")!)
+                        }
                     }
+
                     Divider()
-                    Text("Biografi").font(.headline)
-                    HTMLView(htmlContent: partyData.abstract)
+                    Section(header: Text("Biografi").font(.headline)) {
+                        Text(.init(parseHTML(html: partyData.abstract)))
+                    }
                     Spacer()
                 }
                 .padding(10)

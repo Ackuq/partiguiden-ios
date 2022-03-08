@@ -8,23 +8,40 @@
 import SwiftUI
 
 struct TabNavigator: View {
-    init() {
-        UITabBar.appearance().tintColor = UIColor(named: "AccentColor")
-        UITabBar.appearance().backgroundColor = UIColor(named: "TabBackgroundColor")
+    @State var selectedIndex = 0
+    @State var showingDetailed = false
+
+    var selectionBinding: Binding<Int> {
+        Binding(
+            get: {
+                self.selectedIndex
+            },
+            set: {
+                if $0 == self.selectedIndex {
+                    // Should pop to root
+                    showingDetailed = false
+                }
+
+                self.selectedIndex = $0
+            }
+        )
     }
 
     var body: some View {
-        TabView {
-            SubjectsView()
+        TabView(selection: selectionBinding) {
+            SubjectsView(showingDetailed: $showingDetailed)
                 .tabItem {
                     Image(systemName: "text.book.closed")
                     Text("Ståndpunkter")
                 }
-            PartiesView()
+                .tag(0)
+
+            PartiesView(showingDetailed: $showingDetailed)
                 .tabItem {
                     Image(systemName: "person.3")
                     Text("Partier")
                 }
+                .tag(1)
         }
     }
 }

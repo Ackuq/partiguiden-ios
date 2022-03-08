@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PartyStandpointView: View {
-    @State private var collapsed: Bool = false
+    @State private var showingSheet = false
 
     private var partyInfo: PartyInfo
     private var standpoints: [Standpoint]
@@ -19,55 +19,51 @@ struct PartyStandpointView: View {
     }
 
     var body: some View {
-        content
-            .padding(.horizontal, 20)
-    }
+        Button(action: {
+            showingSheet.toggle()
+        }) {
+            Text(partyInfo.name)
+                .bold()
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(partyInfo.color)
+                .cornerRadius(10)
+                .padding(.horizontal)
+        }
+        .sheet(isPresented: $showingSheet) {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text(partyInfo.name)
+                            .font(.title3)
+                            .bold()
+                        Spacer()
+                        Button("Stäng") {
+                            showingSheet.toggle()
+                        }
+                    }
 
-    private var content: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            header
-            if collapsed {
-                Group {
+                    Divider()
                     ForEach(self.standpoints) { standpoint in
-                        Divider()
                         Text(standpoint.title)
                             .font(.headline)
                         ForEach(standpoint.content, id: \.self) { content in
                             HStack(alignment: .top) {
                                 Rectangle().foregroundColor(partyInfo.color).frame(width: 10, height: 10).padding(.vertical, 7.5)
                                 Text(content)
-                                    .fixedSize(horizontal: false, vertical: true)
                             }
                         }
                         Link("Läs mer på partiets hemsida", destination: URL(string: standpoint.link)!)
                             .foregroundColor(partyInfo.color)
+                        if standpoint.id != standpoints.last?.id {
+                            Divider()
+                        }
                     }
-                }
-                .padding(.leading, 10)
+                    .padding(.leading, 10)
+                }.padding()
             }
-            Divider()
         }
-    }
-
-    private var header: some View {
-        Button(
-            action: {
-                withAnimation(Animation.easeInOut) {
-                    self.collapsed.toggle()
-                }
-            },
-            label: {
-                HStack {
-                    Text(partyInfo.name)
-                        .foregroundColor(partyInfo.color)
-                        .font(.title3)
-                    Spacer()
-                    Image(systemName: self.collapsed ? "chevron.down" : "chevron.up")
-                        .foregroundColor(partyInfo.color)
-                }
-                .padding(.trailing, 10)
-            }
-        )
     }
 }
 

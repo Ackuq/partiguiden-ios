@@ -26,7 +26,8 @@ struct StandpointsView: View {
                     PartyStandpointView(party: party, standpoints: partyStandpoints[party]!)
                 }
             }
-        }.navigationTitle(self.name)
+        }
+        .navigationTitle(self.name)
     }
 }
 
