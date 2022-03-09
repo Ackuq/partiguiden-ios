@@ -21,7 +21,6 @@ struct TabNavigator: View {
                     // Should pop to root
                     showingDetailed = false
                 }
-
                 self.selectedIndex = $0
             }
         )
@@ -42,6 +41,13 @@ struct TabNavigator: View {
                     Text("Partier")
                 }
                 .tag(1)
+
+            ParliamentDecisionsView()
+                .tabItem {
+                    Image(systemName: "checkmark.seal")
+                    Text("Riksdagsbeslut")
+                }
+                .tag(2)
         }
     }
 }

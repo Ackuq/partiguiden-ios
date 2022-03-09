@@ -21,6 +21,7 @@ protocol LoadableObject: ObservableObject {
 
 struct AsyncContentView<Source: LoadableObject, Content: View>: View {
     @ObservedObject var source: Source
+
     var content: (Source.Output) -> Content
 
     init(
@@ -39,8 +40,8 @@ struct AsyncContentView<Source: LoadableObject, Content: View>: View {
             // TODO: Proper error view
             Text("Error \(error.localizedDescription)!")
         // ErrorView(error: error, retryHandler: source.load)
-        case let .success(output):
-            content(output)
+        case let .success(res):
+            content(res)
         }
     }
 }

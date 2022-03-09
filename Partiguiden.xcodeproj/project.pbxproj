@@ -21,6 +21,10 @@
 		7797613227D2A7A3008E8559 /* PartyStandpointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797613127D2A7A3008E8559 /* PartyStandpointView.swift */; };
 		7797613627D2AD58008E8559 /* PartyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797613527D2AD58008E8559 /* PartyManager.swift */; };
 		7797613827D2AF23008E8559 /* Party.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797613727D2AF23008E8559 /* Party.swift */; };
+		77A7218127D7E99F000B9388 /* ParliamentDecisionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7218027D7E99F000B9388 /* ParliamentDecisionsView.swift */; };
+		77A7218327D7EAFD000B9388 /* ParliamentDecisions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7218227D7EAFD000B9388 /* ParliamentDecisions.swift */; };
+		77A7218527D7FAE7000B9388 /* AuthorityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7218427D7FAE7000B9388 /* AuthorityManager.swift */; };
+		77A7218827D8BA23000B9388 /* CardButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7218727D8BA23000B9388 /* CardButtonStyle.swift */; };
 		77B7C3B527D54212007C7927 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7C3B427D54212007C7927 /* LoadingView.swift */; };
 		77B7C3B727D5450C007C7927 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7C3B627D5450C007C7927 /* AsyncContentView.swift */; };
 		77B7C3B927D55A79007C7927 /* APIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7C3B827D55A79007C7927 /* APIViewModel.swift */; };
@@ -65,6 +69,10 @@
 		7797613127D2A7A3008E8559 /* PartyStandpointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyStandpointView.swift; sourceTree = "<group>"; };
 		7797613527D2AD58008E8559 /* PartyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyManager.swift; sourceTree = "<group>"; };
 		7797613727D2AF23008E8559 /* Party.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Party.swift; sourceTree = "<group>"; };
+		77A7218027D7E99F000B9388 /* ParliamentDecisionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParliamentDecisionsView.swift; sourceTree = "<group>"; };
+		77A7218227D7EAFD000B9388 /* ParliamentDecisions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParliamentDecisions.swift; sourceTree = "<group>"; };
+		77A7218427D7FAE7000B9388 /* AuthorityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorityManager.swift; sourceTree = "<group>"; };
+		77A7218727D8BA23000B9388 /* CardButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButtonStyle.swift; sourceTree = "<group>"; };
 		77B7C3B427D54212007C7927 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		77B7C3B627D5450C007C7927 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
 		77B7C3B827D55A79007C7927 /* APIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIViewModel.swift; sourceTree = "<group>"; };
@@ -152,6 +160,7 @@
 		7797611B27D13FCE008E8559 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				77A7218627D8BA07000B9388 /* styles */,
 				7797613027D2A781008E8559 /* components */,
 				7797611D27D13FEB008E8559 /* screens */,
 				7797611C27D13FD9008E8559 /* navigation */,
@@ -174,6 +183,7 @@
 				7797612C27D172FD008E8559 /* StandpointsView.swift */,
 				7797612227D1458C008E8559 /* PartiesView.swift */,
 				77C0E41527D3D12B009326EA /* PartyView.swift */,
+				77A7218027D7E99F000B9388 /* ParliamentDecisionsView.swift */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -183,6 +193,7 @@
 			children = (
 				7797612627D154E1008E8559 /* ApiManager.swift */,
 				7797613527D2AD58008E8559 /* PartyManager.swift */,
+				77A7218427D7FAE7000B9388 /* AuthorityManager.swift */,
 			);
 			path = managers;
 			sourceTree = "<group>";
@@ -193,6 +204,7 @@
 				7797612927D15F16008E8559 /* Subjects.swift */,
 				7797613727D2AF23008E8559 /* Party.swift */,
 				77C0E41727D3D2A7009326EA /* Member.swift */,
+				77A7218227D7EAFD000B9388 /* ParliamentDecisions.swift */,
 			);
 			path = structs;
 			sourceTree = "<group>";
@@ -206,6 +218,14 @@
 				77B7C3B427D54212007C7927 /* LoadingView.swift */,
 			);
 			path = components;
+			sourceTree = "<group>";
+		};
+		77A7218627D8BA07000B9388 /* styles */ = {
+			isa = PBXGroup;
+			children = (
+				77A7218727D8BA23000B9388 /* CardButtonStyle.swift */,
+			);
+			path = styles;
 			sourceTree = "<group>";
 		};
 		77B7C3BA27D6AB5C007C7927 /* utils */ = {
@@ -348,6 +368,7 @@
 				7797613627D2AD58008E8559 /* PartyManager.swift in Sources */,
 				7797612A27D15F16008E8559 /* Subjects.swift in Sources */,
 				77B7C3BC27D6ABA8007C7927 /* HTMLParser.swift in Sources */,
+				77A7218827D8BA23000B9388 /* CardButtonStyle.swift in Sources */,
 				7797613827D2AF23008E8559 /* Party.swift in Sources */,
 				77B7C3B927D55A79007C7927 /* APIViewModel.swift in Sources */,
 				7797612727D154E1008E8559 /* ApiManager.swift in Sources */,
@@ -357,9 +378,12 @@
 				7797612D27D172FD008E8559 /* StandpointsView.swift in Sources */,
 				77C0E41827D3D2A7009326EA /* Member.swift in Sources */,
 				77C0E41627D3D12B009326EA /* PartyView.swift in Sources */,
+				77A7218327D7EAFD000B9388 /* ParliamentDecisions.swift in Sources */,
 				779760F227D13F3A008E8559 /* PartiguidenApp.swift in Sources */,
 				7797612327D1458C008E8559 /* PartiesView.swift in Sources */,
+				77A7218127D7E99F000B9388 /* ParliamentDecisionsView.swift in Sources */,
 				7797613227D2A7A3008E8559 /* PartyStandpointView.swift in Sources */,
+				77A7218527D7FAE7000B9388 /* AuthorityManager.swift in Sources */,
 				77B7C3B727D5450C007C7927 /* AsyncContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

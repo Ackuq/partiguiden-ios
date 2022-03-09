@@ -30,8 +30,8 @@ struct SubjectsView: View {
                     }
                 }
                 .navigationTitle("Ståndpunkter")
-                .navigationBarTitleDisplayMode(.large)
             }
+            .navigationViewStyle(.stack)
         }
     }
 }

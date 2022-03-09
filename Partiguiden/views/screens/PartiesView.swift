@@ -36,6 +36,7 @@ struct PartiesView: View {
             }
             .navigationTitle("Partier")
         }
+        .navigationViewStyle(.stack)
     }
 }
 

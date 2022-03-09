@@ -16,6 +16,7 @@ protocol Endpoint {
     var httpMethod: HTTPMethod { get }
     var baseURLString: String { get }
     var path: String { get }
+    var queryItems: [URLQueryItem] { get }
     var headers: [String: Any]? { get }
     var body: [String: Any]? { get }
 }
@@ -23,7 +24,9 @@ protocol Endpoint {
 extension Endpoint {
     // a default extension that creates the full URL
     var url: String {
-        return baseURLString + path
+        var urlComponents = URLComponents(string: baseURLString + path)!
+        urlComponents.queryItems = queryItems
+        return urlComponents.url!.absoluteString
     }
 }
 
@@ -33,12 +36,14 @@ enum EndpointCases: Endpoint {
 
     case getPartyData(abbreviation: String)
 
+    case getDecisions(search: String, org: String, page: Int)
+
     static let backendBaseUrl = Bundle.main.object(forInfoDictionaryKey: "BACKEND_BASE_URL") as! String
     static let APIBaseUrl = Bundle.main.object(forInfoDictionaryKey: "API_BASE_URL") as! String
 
     var httpMethod: HTTPMethod {
         switch self {
-        case .getSubjects, .getSubject, .getPartyData:
+        case .getSubjects, .getSubject, .getPartyData, .getDecisions:
             return HTTPMethod.GET
         }
     }
@@ -47,8 +52,8 @@ enum EndpointCases: Endpoint {
         switch self {
         case .getSubjects, .getSubject:
             return EndpointCases.backendBaseUrl
-        case .getPartyData:
-            return Bundle.main.object(forInfoDictionaryKey: "API_BASE_URL") as! String
+        case .getPartyData, .getDecisions:
+            return EndpointCases.APIBaseUrl
         }
     }
 
@@ -60,19 +65,33 @@ enum EndpointCases: Endpoint {
             return "/subjects/\(id)/"
         case let .getPartyData(abbreviation):
             return "/party/\(abbreviation)"
+        case .getDecisions:
+            return "/decisions"
+        }
+    }
+
+    var queryItems: [URLQueryItem] {
+        switch self {
+        case .getSubjects, .getSubject, .getPartyData:
+            return []
+        case let .getDecisions(search, org, page):
+            let searchQuery = URLQueryItem(name: "search", value: search)
+            let orgQuery = URLQueryItem(name: "org", value: org)
+            let pageQuery = URLQueryItem(name: "page", value: String(page))
+            return [searchQuery, orgQuery, pageQuery]
         }
     }
 
     var headers: [String: Any]? {
         switch self {
-        case .getSubjects, .getSubject, .getPartyData:
+        case .getSubjects, .getSubject, .getPartyData, .getDecisions:
             return ["Content-Type": "application/json", "Accept": "application/json"]
         }
     }
 
     var body: [String: Any]? {
         switch self {
-        case .getSubjects, .getSubject, .getPartyData:
+        case .getSubjects, .getSubject, .getPartyData, .getDecisions:
             return [:]
         }
     }
@@ -81,9 +100,7 @@ enum EndpointCases: Endpoint {
 class ApiManager {
     static let shared = ApiManager()
 
-    private var subscriber = Set<AnyCancellable>()
-
-    func _handleRequest<T: Decodable>(endpoint: EndpointCases, completion: @escaping (Result<T, Error>) -> Void) {
+    func _handleRequest<T: Decodable>(endpoint: EndpointCases, completion: @escaping (Result<T, Error>) -> Void) -> AnyCancellable {
         let session = URLSession.shared
 
         let url = URL(string: endpoint.url)!
@@ -95,7 +112,7 @@ class ApiManager {
             urlRequest.setValue(header.value as? String, forHTTPHeaderField: header.key)
         }
 
-        session.dataTaskPublisher(for: urlRequest)
+        let request = session.dataTaskPublisher(for: urlRequest)
             .map { $0.data }
             .decode(type: T.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
@@ -109,18 +126,23 @@ class ApiManager {
             } receiveValue: { result in
                 completion(.success(result))
             }
-            .store(in: &subscriber)
+
+        return request
     }
 
-    func getSubjects() -> (@escaping (Result<[SubjectListEntry], Error>) -> Void) -> Void {
+    func getSubjects() -> (@escaping (Result<[SubjectListEntry], Error>) -> Void) -> AnyCancellable {
         { self._handleRequest(endpoint: EndpointCases.getSubjects, completion: $0) }
     }
 
-    func getSubject(endpoint: EndpointCases) -> (@escaping (Result<Subject, Error>) -> Void) -> Void {
+    func getSubject(endpoint: EndpointCases) -> (@escaping (Result<Subject, Error>) -> Void) -> AnyCancellable {
         { self._handleRequest(endpoint: endpoint, completion: $0) }
     }
 
-    func getPartyData(endpoint: EndpointCases) -> (@escaping (Result<PartyData, Error>) -> Void) -> Void {
+    func getPartyData(endpoint: EndpointCases) -> (@escaping (Result<PartyData, Error>) -> Void) -> AnyCancellable {
+        { self._handleRequest(endpoint: endpoint, completion: $0) }
+    }
+
+    func getDecisions(endpoint: EndpointCases) -> (@escaping (Result<DecisionsResponse, Error>) -> Void) -> AnyCancellable {
         { self._handleRequest(endpoint: endpoint, completion: $0) }
     }
 }

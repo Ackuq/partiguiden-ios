@@ -15,5 +15,10 @@ func parseHTML(html: String) -> String {
         .replacingOccurrences(of: "</p>", with: "")
         .replacingOccurrences(of: "<i>", with: "*")
         .replacingOccurrences(of: "</i>", with: "*")
+        .replacingOccurrences(of: "<li>", with: "- ")
+        .replacingOccurrences(of: "</li>", with: "")
+        .replacingOccurrences(of: "<ul>", with: "")
+        .replacingOccurrences(of: "</ul>", with: "")
+        .trimmingCharacters(in: .whitespacesAndNewlines)
     return markdown
 }
