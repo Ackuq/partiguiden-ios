@@ -17,11 +17,12 @@ func endpoint(page: Int, org: String, search: String) -> EndpointCases {
 
 struct DecisionCardView: View {
     @State private var showingSheet = false
+    @Environment(\.colorScheme) var colorScheme
 
     var decision: Decision
 
     var body: some View {
-        let authorityInfo = AuthorityManager.authorities[decision.authority.uppercased()]
+        let authorityInfo = authorities[decision.authority.uppercased()]
         Button(action: { showingSheet.toggle() }) {
             VStack(alignment: .leading, spacing: 10) {
                 if authorityInfo != nil {
@@ -46,46 +47,44 @@ struct DecisionCardView: View {
         }
         .buttonStyle(CardButtonStyle(backgroundColor: authorityInfo?.color ?? .accentColor))
         .sheet(isPresented: $showingSheet) {
-            VStack(spacing: 0) {
-                HStack {
-                    Spacer()
-                    Button("Stäng") {
-                        showingSheet.toggle()
-                    }
-                }.padding(.bottom, 15)
-                Divider()
-                ScrollView {
-                    Divider()
-                    VStack(alignment: .leading) {
-                        Text(decision.title)
-                            .font(.title3)
-                            .bold()
-                            .padding(.bottom, 1)
-                        Text(decision.title)
-                            .font(.subheadline)
+            SheetView(title: "Besult i korthet", showingSheet: $showingSheet) {
+                VStack(spacing: 0) {
+                    ScrollView {
                         Divider()
-                        Text(parseHTML(html: decision.paragraph))
+                        VStack(alignment: .leading) {
+                            Text(decision.title)
+                                .font(.title3)
+                                .bold()
+                                .padding(.bottom, 1)
+                            Text(decision.title)
+                                .font(.subheadline)
+                            Divider()
+                            Text(parseHTML(html: decision.paragraph))
+                        }
                     }
+                    .padding(.horizontal)
                 }
-            }.padding()
+            }
         }
     }
 }
 
 struct ParliamentDecisionsView: View {
     @State var page: Int
-    @State var org: String
+    @State var org: [String]
     @State var search: String
+    @State var filterView: Bool
 
     @ObservedObject var viewModel: APIViewModel<DecisionsResponse>
 
-    init(page: Int = 1, org: String = "", search: String = "") {
+    init(page: Int = 1, org: [String] = [], search: String = "") {
         self.search = search
         self.org = org
         self.page = page
+        filterView = false
         viewModel = APIViewModel(
             loader: ApiManager.shared.getDecisions(
-                endpoint: endpoint(page: page, org: org, search: search)
+                endpoint: endpoint(page: page, org: org.joined(separator: ","), search: search)
             )
         )
     }
@@ -107,7 +106,7 @@ struct ParliamentDecisionsView: View {
                                 .onAppear(perform: {
                                     page += 1
                                     viewModel.loadMoreContent(
-                                        newContentLoader: ApiManager.shared.getDecisions(endpoint: endpoint(page: self.page, org: self.org, search: self.search)),
+                                        newContentLoader: ApiManager.shared.getDecisions(endpoint: endpoint(page: page, org: org.joined(separator: ","), search: search)),
                                         appendContent: appendContent
                                     )
                                 })
@@ -116,25 +115,76 @@ struct ParliamentDecisionsView: View {
                     }
                 }
                 .listStyle(.plain)
-                .navigationTitle("Riksdagsbeslut")
                 .refreshable {
                     viewModel.load()
                 }
-                .searchable(text: $search)
-                .onChange(of: search) { searchText in
-                    viewModel.loader = ApiManager.shared.getDecisions(
-                        endpoint: endpoint(page: page, org: org, search: searchText)
-                    )
-                    viewModel.load()
+            }
+            .navigationBarItems(trailing: Button {
+                filterView.toggle()
+            } label: {
+                Image(systemName: "line.3.horizontal.decrease.circle")
+                    .foregroundColor(.blue)
+                    .font(.title3)
+            })
+            .navigationTitle("Riksdagsbeslut")
+            .sheet(isPresented: $filterView) {
+                SheetView(title: "Filter", showingSheet: $filterView) {
+                    List {
+                        Section {
+                            let allBinding = Binding<Bool>(
+                                get: { org.isEmpty },
+                                set: {
+                                    if $0 == true {
+                                        org = []
+                                    }
+                                }
+                            )
+                            Toggle("Alla", isOn: allBinding)
+                        }
+
+                        ForEach(authorities.keys.sorted(), id: \.self) { authorityKey in
+                            let authority = authorities[authorityKey]!
+                            let activeBinding = Binding<Bool>(
+                                get: { org.contains(authorityKey) },
+                                set: {
+                                    if $0 == false {
+                                        org = org.filter { k in k != authorityKey }
+                                    } else {
+                                        org.append(authorityKey)
+                                    }
+                                }
+                            )
+                            Toggle(authority.description, isOn: activeBinding)
+                        }
+                    }
                 }
             }
-
-        }.navigationViewStyle(.stack)
+        }
+        .navigationViewStyle(.stack)
+        .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always))
+        .onChange(of: search) { searchText in
+            page = 1
+            viewModel.loader = ApiManager.shared.getDecisions(
+                endpoint: endpoint(page: page, org: org.joined(separator: ","), search: searchText)
+            )
+            viewModel.load()
+        }
+        .onChange(of: org, perform: { orgs in
+            page = 1
+            viewModel.loader = ApiManager.shared.getDecisions(
+                endpoint: endpoint(page: page, org: orgs.joined(separator: ","), search: search)
+            )
+            viewModel.load()
+        })
     }
 }
 
 struct ParliamentDecisionsView_Previews: PreviewProvider {
     static var previews: some View {
-        ParliamentDecisionsView()
+        Group {
+            ParliamentDecisionsView()
+            ParliamentDecisionsView()
+                .preferredColorScheme(.dark)
+        }
     }
 }

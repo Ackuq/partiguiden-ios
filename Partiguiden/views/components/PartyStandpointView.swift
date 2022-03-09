@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct PartyStandpointView: View {
-    @State private var showingSheet = false
+    @State var showingSheet = false
 
     private var partyInfo: PartyInfo
     private var standpoints: [Standpoint]
 
     init(party: String, standpoints: [Standpoint]) {
-        partyInfo = PartyManager.partyLetterDict[party.uppercased()]!
+        partyInfo = partyLetterDict[party.uppercased()]!
         self.standpoints = standpoints
     }
 
@@ -32,36 +32,26 @@ struct PartyStandpointView: View {
                 .padding(.horizontal)
         }
         .sheet(isPresented: $showingSheet) {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text(partyInfo.name)
-                            .font(.title3)
-                            .bold()
-                        Spacer()
-                        Button("Stäng") {
-                            showingSheet.toggle()
-                        }
-                    }
-
-                    Divider()
-                    ForEach(self.standpoints) { standpoint in
-                        Text(standpoint.title)
-                            .font(.headline)
-                        ForEach(standpoint.content, id: \.self) { content in
-                            HStack(alignment: .top) {
-                                Rectangle().foregroundColor(partyInfo.color).frame(width: 10, height: 10).padding(.vertical, 7.5)
-                                Text(content)
+            SheetView(title: partyInfo.name, showingSheet: $showingSheet) {
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        ForEach(self.standpoints) { standpoint in
+                            Text(standpoint.title)
+                                .font(.headline)
+                            ForEach(standpoint.content, id: \.self) { content in
+                                HStack(alignment: .top) {
+                                    Rectangle().foregroundColor(partyInfo.color).frame(width: 10, height: 10).padding(.vertical, 7.5)
+                                    Text(content)
+                                }
+                            }
+                            Link("Läs mer på partiets hemsida", destination: URL(string: standpoint.link)!)
+                                .foregroundColor(partyInfo.color)
+                            if standpoint.id != standpoints.last?.id {
+                                Divider()
                             }
                         }
-                        Link("Läs mer på partiets hemsida", destination: URL(string: standpoint.link)!)
-                            .foregroundColor(partyInfo.color)
-                        if standpoint.id != standpoints.last?.id {
-                            Divider()
-                        }
-                    }
-                    .padding(.leading, 10)
-                }.padding()
+                    }.padding()
+                }
             }
         }
     }

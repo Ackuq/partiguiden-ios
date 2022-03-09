@@ -58,7 +58,7 @@ struct PartyView: View {
 struct PartyView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PartyView(partyInfo: PartyManager.partyLetterDict["S"]!)
+            PartyView(partyInfo: partyLetterDict["S"]!)
         }
     }
 }

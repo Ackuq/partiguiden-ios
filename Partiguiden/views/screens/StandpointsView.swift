@@ -20,7 +20,7 @@ struct StandpointsView: View {
 
     var body: some View {
         AsyncContentView(source: viewModel) { subject in
-            let partyStandpoints = PartyManager.createStandpointsMap(standpoints: subject.standpoints)
+            let partyStandpoints = createStandpointsMap(standpoints: subject.standpoints)
             ScrollView {
                 ForEach(partyStandpoints.keys.sorted(), id: \.self) { party in
                     PartyStandpointView(party: party, standpoints: partyStandpoints[party]!)

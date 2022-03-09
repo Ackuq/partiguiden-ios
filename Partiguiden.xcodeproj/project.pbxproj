@@ -25,6 +25,7 @@
 		77A7218327D7EAFD000B9388 /* ParliamentDecisions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7218227D7EAFD000B9388 /* ParliamentDecisions.swift */; };
 		77A7218527D7FAE7000B9388 /* AuthorityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7218427D7FAE7000B9388 /* AuthorityManager.swift */; };
 		77A7218827D8BA23000B9388 /* CardButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7218727D8BA23000B9388 /* CardButtonStyle.swift */; };
+		77A7218A27D95364000B9388 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7218927D95364000B9388 /* SheetView.swift */; };
 		77B7C3B527D54212007C7927 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7C3B427D54212007C7927 /* LoadingView.swift */; };
 		77B7C3B727D5450C007C7927 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7C3B627D5450C007C7927 /* AsyncContentView.swift */; };
 		77B7C3B927D55A79007C7927 /* APIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7C3B827D55A79007C7927 /* APIViewModel.swift */; };
@@ -73,6 +74,7 @@
 		77A7218227D7EAFD000B9388 /* ParliamentDecisions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParliamentDecisions.swift; sourceTree = "<group>"; };
 		77A7218427D7FAE7000B9388 /* AuthorityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorityManager.swift; sourceTree = "<group>"; };
 		77A7218727D8BA23000B9388 /* CardButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButtonStyle.swift; sourceTree = "<group>"; };
+		77A7218927D95364000B9388 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
 		77B7C3B427D54212007C7927 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		77B7C3B627D5450C007C7927 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
 		77B7C3B827D55A79007C7927 /* APIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIViewModel.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				77B7C3B627D5450C007C7927 /* AsyncContentView.swift */,
 				7797613127D2A7A3008E8559 /* PartyStandpointView.swift */,
 				77B7C3B427D54212007C7927 /* LoadingView.swift */,
+				77A7218927D95364000B9388 /* SheetView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7797613627D2AD58008E8559 /* PartyManager.swift in Sources */,
+				77A7218A27D95364000B9388 /* SheetView.swift in Sources */,
 				7797612A27D15F16008E8559 /* Subjects.swift in Sources */,
 				77B7C3BC27D6ABA8007C7927 /* HTMLParser.swift in Sources */,
 				77A7218827D8BA23000B9388 /* CardButtonStyle.swift in Sources */,

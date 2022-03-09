@@ -14,7 +14,7 @@ struct PartiesView: View {
 
     var body: some View {
         NavigationView {
-            List(PartyManager.parties, id: \.letter) { party in
+            List(parties, id: \.letter) { party in
                 let activeBinding = Binding<Bool>(
                     get: { showingDetailed && activeParty == party.letter },
                     set: {
