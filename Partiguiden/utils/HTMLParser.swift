@@ -7,7 +7,7 @@
 
 import Foundation
 
-func parseHTML(html: String) -> String {
+func parseHTML(html: String) -> AttributedString {
     let markdown = html
         .replacingOccurrences(of: "<b>", with: "**")
         .replacingOccurrences(of: "</b>", with: "**")
@@ -20,5 +20,5 @@ func parseHTML(html: String) -> String {
         .replacingOccurrences(of: "<ul>", with: "")
         .replacingOccurrences(of: "</ul>", with: "")
         .trimmingCharacters(in: .whitespacesAndNewlines)
-    return markdown
+    return try! AttributedString(markdown: markdown, options: AttributedString.MarkdownParsingOptions(interpretedSyntax: .inlineOnlyPreservingWhitespace))
 }

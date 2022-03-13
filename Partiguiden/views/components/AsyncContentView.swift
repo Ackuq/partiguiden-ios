@@ -9,6 +9,7 @@ import SwiftUI
 
 enum LoadingState<Value> {
     case loading
+    case fetching
     case failed(Error)
     case success(Value)
 }
@@ -16,7 +17,7 @@ enum LoadingState<Value> {
 protocol LoadableObject: ObservableObject {
     associatedtype Output
     var state: LoadingState<Output> { get }
-    func load()
+    func load(updateState: Bool)
 }
 
 struct AsyncContentView<Source: LoadableObject, Content: View>: View {
@@ -35,11 +36,14 @@ struct AsyncContentView<Source: LoadableObject, Content: View>: View {
     var body: some View {
         switch source.state {
         case .loading:
-            LoadingView().onAppear(perform: source.load)
+            LoadingView().onAppear(perform: { source.load(updateState: true) })
+        case .fetching:
+            LoadingView()
         case let .failed(error):
-            // TODO: Proper error view
-            Text("Error \(error.localizedDescription)!")
-        // ErrorView(error: error, retryHandler: source.load)
+            VStack {
+                ErrorView(error: error)
+                Button("Försök igen", action: { source.load(updateState: true) })
+            }
         case let .success(res):
             content(res)
         }

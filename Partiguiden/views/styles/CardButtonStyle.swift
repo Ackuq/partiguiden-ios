@@ -7,16 +7,31 @@
 
 import SwiftUI
 
-struct CardButtonStyle: ButtonStyle {
-    var backgroundColor: Color
+extension View {
+    @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
+    }
+}
+
+struct CardButtonStyle<Background>: ButtonStyle where Background: ShapeStyle {
+    var backgroundColor: Background
+    var foregroundColor: Color = .white
+    var usePadding: Bool = true
+    var useSpacer: Bool = true
 
     func makeBody(configuration: Configuration) -> some View {
         HStack {
             configuration.label
-            Spacer()
+            if useSpacer {
+                Spacer()
+            }
         }
-        .padding()
-        .foregroundColor(.white)
+        .if(usePadding) { $0.padding() }
+        .foregroundColor(foregroundColor)
         .background(backgroundColor)
         .frame(maxWidth: .infinity)
         .cornerRadius(20)
@@ -40,7 +55,7 @@ struct CardButtonStyle_Previews: PreviewProvider {
                     }
                 }
             }
-            .buttonStyle(CardButtonStyle(backgroundColor: .accentColor))
+            .buttonStyle(CardButtonStyle(backgroundColor: Color("AccentColor")))
             Button(action: {}) {
                 VStack(alignment: .leading) {
                     HStack {
@@ -54,7 +69,7 @@ struct CardButtonStyle_Previews: PreviewProvider {
                     }
                 }
             }
-            .buttonStyle(CardButtonStyle(backgroundColor: .accentColor))
+            .buttonStyle(CardButtonStyle(backgroundColor: Color("AccentColor")))
         }
     }
 }

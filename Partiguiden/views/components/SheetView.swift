@@ -7,26 +7,31 @@
 
 import SwiftUI
 
-struct SheetView<Content>: View where Content: View {
+struct BaseSheetView<Content>: View where Content: View {
     var title: String
-    @Binding var showingSheet: Bool
     @ViewBuilder var content: () -> Content
 
-    init(title: String, showingSheet: Binding<Bool>, content: @escaping () -> Content) {
-        self.title = title
-        _showingSheet = showingSheet
-        self.content = content
+    @Environment(\.presentationMode) var presentationMode
+
+    var body: some View {
+        content()
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(trailing: Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Text("Klar").bold()
+            })
+            .navigationTitle(title)
     }
+}
+
+struct SheetView<Content>: View where Content: View {
+    var title: String
+    @ViewBuilder var content: () -> Content
 
     var body: some View {
         NavigationView {
-            content()
-                .navigationBarTitle(Text(title), displayMode: .inline)
-                .navigationBarItems(trailing: Button(action: {
-                    showingSheet.toggle()
-                }) {
-                    Text("Klar").bold()
-                })
+            BaseSheetView(title: title, content: content)
         }
     }
 }

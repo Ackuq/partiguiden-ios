@@ -8,46 +8,34 @@
 import SwiftUI
 
 struct TabNavigator: View {
-    @State var selectedIndex = 0
-    @State var showingDetailed = false
-
-    var selectionBinding: Binding<Int> {
-        Binding(
-            get: {
-                self.selectedIndex
-            },
-            set: {
-                if $0 == self.selectedIndex {
-                    // Should pop to root
-                    showingDetailed = false
-                }
-                self.selectedIndex = $0
-            }
-        )
-    }
-
     var body: some View {
-        TabView(selection: selectionBinding) {
-            SubjectsView(showingDetailed: $showingDetailed)
+        TabView {
+            SubjectsView()
                 .tabItem {
                     Image(systemName: "text.book.closed")
                     Text("Ståndpunkter")
                 }
                 .tag(0)
 
-            PartiesView(showingDetailed: $showingDetailed)
+            PartiesView()
                 .tabItem {
                     Image(systemName: "person.3")
                     Text("Partier")
                 }
                 .tag(1)
 
-            ParliamentDecisionsView()
+            DecisionsView()
                 .tabItem {
                     Image(systemName: "checkmark.seal")
                     Text("Riksdagsbeslut")
                 }
                 .tag(2)
+            VotesView()
+                .tabItem {
+                    Image(systemName: "dot.circle.and.hand.point.up.left.fill")
+                    Text("Voteringar")
+                }
+                .tag(3)
         }
     }
 }

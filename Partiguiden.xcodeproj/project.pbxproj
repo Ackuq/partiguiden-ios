@@ -15,23 +15,31 @@
 		7797610F27D13F3A008E8559 /* PartiguidenUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797610E27D13F3A008E8559 /* PartiguidenUITestsLaunchTests.swift */; };
 		7797612127D143BE008E8559 /* TabNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797612027D143BE008E8559 /* TabNavigator.swift */; };
 		7797612327D1458C008E8559 /* PartiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797612227D1458C008E8559 /* PartiesView.swift */; };
-		7797612727D154E1008E8559 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797612627D154E1008E8559 /* ApiManager.swift */; };
+		7797612727D154E1008E8559 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797612627D154E1008E8559 /* APIManager.swift */; };
 		7797612A27D15F16008E8559 /* Subjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797612927D15F16008E8559 /* Subjects.swift */; };
 		7797612D27D172FD008E8559 /* StandpointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797612C27D172FD008E8559 /* StandpointsView.swift */; };
-		7797613227D2A7A3008E8559 /* PartyStandpointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797613127D2A7A3008E8559 /* PartyStandpointView.swift */; };
 		7797613627D2AD58008E8559 /* PartyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797613527D2AD58008E8559 /* PartyManager.swift */; };
-		7797613827D2AF23008E8559 /* Party.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797613727D2AF23008E8559 /* Party.swift */; };
-		77A7218127D7E99F000B9388 /* ParliamentDecisionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7218027D7E99F000B9388 /* ParliamentDecisionsView.swift */; };
+		7797613827D2AF23008E8559 /* Parties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797613727D2AF23008E8559 /* Parties.swift */; };
+		77A7218127D7E99F000B9388 /* DecisionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7218027D7E99F000B9388 /* DecisionsView.swift */; };
 		77A7218327D7EAFD000B9388 /* ParliamentDecisions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7218227D7EAFD000B9388 /* ParliamentDecisions.swift */; };
 		77A7218527D7FAE7000B9388 /* AuthorityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7218427D7FAE7000B9388 /* AuthorityManager.swift */; };
 		77A7218827D8BA23000B9388 /* CardButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7218727D8BA23000B9388 /* CardButtonStyle.swift */; };
 		77A7218A27D95364000B9388 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7218927D95364000B9388 /* SheetView.swift */; };
+		77AADA2C27DB6AC900ED4DAE /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AADA2B27DB6AC900ED4DAE /* DocumentView.swift */; };
+		77AADA2E27DB6B8800ED4DAE /* Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AADA2D27DB6B8800ED4DAE /* Documents.swift */; };
+		77AADA3027DB6D5900ED4DAE /* HTMLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AADA2F27DB6D5900ED4DAE /* HTMLView.swift */; };
+		77AADA3827DB940600ED4DAE /* VotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AADA3727DB940600ED4DAE /* VotesView.swift */; };
+		77AADA3A27DB94C400ED4DAE /* Votes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AADA3927DB94C400ED4DAE /* Votes.swift */; };
+		77AADA3E27DBAC1100ED4DAE /* ParliamentFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AADA3D27DBAC1100ED4DAE /* ParliamentFilterView.swift */; };
+		77AADA4027DBAECF00ED4DAE /* Paginated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AADA3F27DBAECF00ED4DAE /* Paginated.swift */; };
+		77AADA4227DBF17B00ED4DAE /* VoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AADA4127DBF17B00ED4DAE /* VoteView.swift */; };
+		77AADA4427DD597B00ED4DAE /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AADA4327DD597B00ED4DAE /* ErrorView.swift */; };
 		77B7C3B527D54212007C7927 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7C3B427D54212007C7927 /* LoadingView.swift */; };
 		77B7C3B727D5450C007C7927 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7C3B627D5450C007C7927 /* AsyncContentView.swift */; };
 		77B7C3B927D55A79007C7927 /* APIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7C3B827D55A79007C7927 /* APIViewModel.swift */; };
 		77B7C3BC27D6ABA8007C7927 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7C3BB27D6ABA8007C7927 /* HTMLParser.swift */; };
 		77C0E41627D3D12B009326EA /* PartyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C0E41527D3D12B009326EA /* PartyView.swift */; };
-		77C0E41827D3D2A7009326EA /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C0E41727D3D2A7009326EA /* Member.swift */; };
+		77C0E41827D3D2A7009326EA /* Members.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C0E41727D3D2A7009326EA /* Members.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,24 +71,32 @@
 		7797610E27D13F3A008E8559 /* PartiguidenUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartiguidenUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7797612027D143BE008E8559 /* TabNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigator.swift; sourceTree = "<group>"; };
 		7797612227D1458C008E8559 /* PartiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartiesView.swift; sourceTree = "<group>"; };
-		7797612627D154E1008E8559 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		7797612627D154E1008E8559 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		7797612927D15F16008E8559 /* Subjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subjects.swift; sourceTree = "<group>"; };
 		7797612B27D16D04008E8559 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7797612C27D172FD008E8559 /* StandpointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandpointsView.swift; sourceTree = "<group>"; };
-		7797613127D2A7A3008E8559 /* PartyStandpointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyStandpointView.swift; sourceTree = "<group>"; };
 		7797613527D2AD58008E8559 /* PartyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyManager.swift; sourceTree = "<group>"; };
-		7797613727D2AF23008E8559 /* Party.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Party.swift; sourceTree = "<group>"; };
-		77A7218027D7E99F000B9388 /* ParliamentDecisionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParliamentDecisionsView.swift; sourceTree = "<group>"; };
+		7797613727D2AF23008E8559 /* Parties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parties.swift; sourceTree = "<group>"; };
+		77A7218027D7E99F000B9388 /* DecisionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecisionsView.swift; sourceTree = "<group>"; };
 		77A7218227D7EAFD000B9388 /* ParliamentDecisions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParliamentDecisions.swift; sourceTree = "<group>"; };
 		77A7218427D7FAE7000B9388 /* AuthorityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorityManager.swift; sourceTree = "<group>"; };
 		77A7218727D8BA23000B9388 /* CardButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButtonStyle.swift; sourceTree = "<group>"; };
 		77A7218927D95364000B9388 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
+		77AADA2B27DB6AC900ED4DAE /* DocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
+		77AADA2D27DB6B8800ED4DAE /* Documents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Documents.swift; sourceTree = "<group>"; };
+		77AADA2F27DB6D5900ED4DAE /* HTMLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLView.swift; sourceTree = "<group>"; };
+		77AADA3727DB940600ED4DAE /* VotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotesView.swift; sourceTree = "<group>"; };
+		77AADA3927DB94C400ED4DAE /* Votes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Votes.swift; sourceTree = "<group>"; };
+		77AADA3D27DBAC1100ED4DAE /* ParliamentFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParliamentFilterView.swift; sourceTree = "<group>"; };
+		77AADA3F27DBAECF00ED4DAE /* Paginated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paginated.swift; sourceTree = "<group>"; };
+		77AADA4127DBF17B00ED4DAE /* VoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteView.swift; sourceTree = "<group>"; };
+		77AADA4327DD597B00ED4DAE /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		77B7C3B427D54212007C7927 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		77B7C3B627D5450C007C7927 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
 		77B7C3B827D55A79007C7927 /* APIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIViewModel.swift; sourceTree = "<group>"; };
 		77B7C3BB27D6ABA8007C7927 /* HTMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
 		77C0E41527D3D12B009326EA /* PartyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyView.swift; sourceTree = "<group>"; };
-		77C0E41727D3D2A7009326EA /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		77C0E41727D3D2A7009326EA /* Members.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Members.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +178,7 @@
 		7797611B27D13FCE008E8559 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				77AADA3127DB82A100ED4DAE /* models */,
 				77A7218627D8BA07000B9388 /* styles */,
 				7797613027D2A781008E8559 /* components */,
 				7797611D27D13FEB008E8559 /* screens */,
@@ -185,7 +202,10 @@
 				7797612C27D172FD008E8559 /* StandpointsView.swift */,
 				7797612227D1458C008E8559 /* PartiesView.swift */,
 				77C0E41527D3D12B009326EA /* PartyView.swift */,
-				77A7218027D7E99F000B9388 /* ParliamentDecisionsView.swift */,
+				77AADA2B27DB6AC900ED4DAE /* DocumentView.swift */,
+				77A7218027D7E99F000B9388 /* DecisionsView.swift */,
+				77AADA3727DB940600ED4DAE /* VotesView.swift */,
+				77AADA4127DBF17B00ED4DAE /* VoteView.swift */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -193,7 +213,7 @@
 		7797612427D154B1008E8559 /* managers */ = {
 			isa = PBXGroup;
 			children = (
-				7797612627D154E1008E8559 /* ApiManager.swift */,
+				7797612627D154E1008E8559 /* APIManager.swift */,
 				7797613527D2AD58008E8559 /* PartyManager.swift */,
 				77A7218427D7FAE7000B9388 /* AuthorityManager.swift */,
 			);
@@ -204,9 +224,12 @@
 			isa = PBXGroup;
 			children = (
 				7797612927D15F16008E8559 /* Subjects.swift */,
-				7797613727D2AF23008E8559 /* Party.swift */,
-				77C0E41727D3D2A7009326EA /* Member.swift */,
+				7797613727D2AF23008E8559 /* Parties.swift */,
+				77C0E41727D3D2A7009326EA /* Members.swift */,
 				77A7218227D7EAFD000B9388 /* ParliamentDecisions.swift */,
+				77AADA2D27DB6B8800ED4DAE /* Documents.swift */,
+				77AADA3927DB94C400ED4DAE /* Votes.swift */,
+				77AADA3F27DBAECF00ED4DAE /* Paginated.swift */,
 			);
 			path = structs;
 			sourceTree = "<group>";
@@ -214,11 +237,12 @@
 		7797613027D2A781008E8559 /* components */ = {
 			isa = PBXGroup;
 			children = (
-				77B7C3B827D55A79007C7927 /* APIViewModel.swift */,
 				77B7C3B627D5450C007C7927 /* AsyncContentView.swift */,
-				7797613127D2A7A3008E8559 /* PartyStandpointView.swift */,
 				77B7C3B427D54212007C7927 /* LoadingView.swift */,
 				77A7218927D95364000B9388 /* SheetView.swift */,
+				77AADA2F27DB6D5900ED4DAE /* HTMLView.swift */,
+				77AADA3D27DBAC1100ED4DAE /* ParliamentFilterView.swift */,
+				77AADA4327DD597B00ED4DAE /* ErrorView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -229,6 +253,14 @@
 				77A7218727D8BA23000B9388 /* CardButtonStyle.swift */,
 			);
 			path = styles;
+			sourceTree = "<group>";
+		};
+		77AADA3127DB82A100ED4DAE /* models */ = {
+			isa = PBXGroup;
+			children = (
+				77B7C3B827D55A79007C7927 /* APIViewModel.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 		77B7C3BA27D6AB5C007C7927 /* utils */ = {
@@ -371,23 +403,31 @@
 				7797613627D2AD58008E8559 /* PartyManager.swift in Sources */,
 				77A7218A27D95364000B9388 /* SheetView.swift in Sources */,
 				7797612A27D15F16008E8559 /* Subjects.swift in Sources */,
+				77AADA4027DBAECF00ED4DAE /* Paginated.swift in Sources */,
 				77B7C3BC27D6ABA8007C7927 /* HTMLParser.swift in Sources */,
 				77A7218827D8BA23000B9388 /* CardButtonStyle.swift in Sources */,
-				7797613827D2AF23008E8559 /* Party.swift in Sources */,
+				7797613827D2AF23008E8559 /* Parties.swift in Sources */,
 				77B7C3B927D55A79007C7927 /* APIViewModel.swift in Sources */,
-				7797612727D154E1008E8559 /* ApiManager.swift in Sources */,
+				77AADA2C27DB6AC900ED4DAE /* DocumentView.swift in Sources */,
+				7797612727D154E1008E8559 /* APIManager.swift in Sources */,
+				77AADA3027DB6D5900ED4DAE /* HTMLView.swift in Sources */,
 				779760F427D13F3A008E8559 /* SubjectsView.swift in Sources */,
+				77AADA3A27DB94C400ED4DAE /* Votes.swift in Sources */,
 				77B7C3B527D54212007C7927 /* LoadingView.swift in Sources */,
 				7797612127D143BE008E8559 /* TabNavigator.swift in Sources */,
+				77AADA2E27DB6B8800ED4DAE /* Documents.swift in Sources */,
 				7797612D27D172FD008E8559 /* StandpointsView.swift in Sources */,
-				77C0E41827D3D2A7009326EA /* Member.swift in Sources */,
+				77C0E41827D3D2A7009326EA /* Members.swift in Sources */,
 				77C0E41627D3D12B009326EA /* PartyView.swift in Sources */,
 				77A7218327D7EAFD000B9388 /* ParliamentDecisions.swift in Sources */,
 				779760F227D13F3A008E8559 /* PartiguidenApp.swift in Sources */,
+				77AADA3E27DBAC1100ED4DAE /* ParliamentFilterView.swift in Sources */,
+				77AADA4227DBF17B00ED4DAE /* VoteView.swift in Sources */,
 				7797612327D1458C008E8559 /* PartiesView.swift in Sources */,
-				77A7218127D7E99F000B9388 /* ParliamentDecisionsView.swift in Sources */,
-				7797613227D2A7A3008E8559 /* PartyStandpointView.swift in Sources */,
+				77A7218127D7E99F000B9388 /* DecisionsView.swift in Sources */,
+				77AADA4427DD597B00ED4DAE /* ErrorView.swift in Sources */,
 				77A7218527D7FAE7000B9388 /* AuthorityManager.swift in Sources */,
+				77AADA3827DB940600ED4DAE /* VotesView.swift in Sources */,
 				77B7C3B727D5450C007C7927 /* AsyncContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -551,7 +591,7 @@
 				API_BASE_URL = "https://beta.partiguiden.nu/api";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				BACKEND_BASE_URL = "https://backend-staging.partiguiden.se";
+				BACKEND_BASE_URL = "https://backend.partiguiden.se";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 47QNG3VKWN;

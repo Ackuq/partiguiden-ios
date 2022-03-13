@@ -1,43 +1,25 @@
 import SwiftUI
 
 struct SubjectsView: View {
-    @ObservedObject var viewModel = APIViewModel(loader: ApiManager.shared.getSubjects())
-    @State var activeSubject: Int? = nil
-
-    @Binding var showingDetailed: Bool
+    @ObservedObject var viewModel = APIViewModel(loader: APIManager.getSubjects())
 
     var body: some View {
-        AsyncContentView(source: viewModel) {
-            subjects in
-            NavigationView {
+        NavigationView {
+            AsyncContentView(source: viewModel) {
+                subjects in
                 List(subjects) { subject in
-                    let activeBinding = Binding<Bool>(
-                        get: { showingDetailed && activeSubject == subject.id },
-                        set: {
-                            if $0 == false {
-                                showingDetailed = false
-                                activeSubject = nil
-                            } else {
-                                showingDetailed = true
-                                activeSubject = subject.id
-                            }
-                        }
-                    )
-                    NavigationLink(destination: StandpointsView(id: subject.id, name: subject.name), isActive: activeBinding) {
-                        HStack {
-                            Text(subject.name).font(.body)
-                        }
+                    NavigationLink(destination: StandpointsView(id: subject.id, name: subject.name)) {
+                        Text(subject.name)
                     }
                 }
-                .navigationTitle("Ståndpunkter")
             }
-            .navigationViewStyle(.stack)
-        }
+            .navigationTitle("Ståndpunkter")
+        }.navigationViewStyle(.stack)
     }
 }
 
 struct SubjectsView_Previews: PreviewProvider {
     static var previews: some View {
-        SubjectsView(showingDetailed: .constant(true))
+        SubjectsView()
     }
 }

@@ -7,70 +7,71 @@
 
 import SwiftUI
 
-struct PartyInfo {
-    var name: String
-    var letter: String
-    var color: Color
-    var image: Image
+enum PartyKey: String, Decodable, CaseIterable, Comparable {
+    static func < (lhs: PartyKey, rhs: PartyKey) -> Bool {
+        lhs.rawValue < rhs.rawValue
+    }
+
+    case S, M, SD, C, V, KD, L, MP
 }
 
-let parties: [PartyInfo] = [
-    PartyInfo(
-        name: "Socialdemokraterna",
-        letter: "S",
-        color: Color(red: 0.75, green: 0.22, blue: 0.17),
-        image: Image("S")
-    ),
-    PartyInfo(
-        name: "Moderaterna",
-        letter: "M",
-        color: Color(red: 0.23, green: 0.33, blue: 0.61),
-        image: Image("M")
-    ),
-    PartyInfo(
-        name: "Sverigedemokraterna",
-        letter: "SD",
-        color: Color(red: 0.96, green: 0.82, blue: 0.25),
-        image: Image("SD")
-    ),
-    PartyInfo(
-        name: "Centerpartiet",
-        letter: "C",
-        color: Color(red: 0.12, green: 0.51, blue: 0.30),
-        image: Image("C")
-    ),
-    PartyInfo(
-        name: "Vänsterpartiet",
-        letter: "V",
-        color: Color(red: 0.81, green: 0.00, blue: 0.06),
-        image: Image("V")
-    ),
-    PartyInfo(
-        name: "Kristdemokraterna",
-        letter: "KD",
-        color: Color(red: 0.13, green: 0.65, blue: 0.94),
-        image: Image("KD")
-    ),
-    PartyInfo(
-        name: "Liberalerna",
-        letter: "L",
-        color: Color(red: 0.36, green: 0.59, blue: 0.75),
-        image: Image("L")
-    ),
-    PartyInfo(
-        name: "Miljöpartiet",
-        letter: "MP",
-        color: Color(red: 0.15, green: 0.65, blue: 0.36),
-        image: Image("MP")
-    ),
-]
+struct PartyInfo: Identifiable {
+    let id: PartyKey
+    var letter: PartyKey { id }
+    let name: String
+    var color: Color { Color(id.rawValue) }
+    let image: Image
+}
 
-let partyLetterDict: [String: PartyInfo] = Dictionary(uniqueKeysWithValues: parties.map { ($0.letter, $0) })
+enum PartyManager {
+    static let parties: [PartyKey: PartyInfo] = [
+        .S: PartyInfo(
+            id: .S,
+            name: "Socialdemokraterna",
+            image: Image("S")
+        ),
+        .M: PartyInfo(
+            id: .M,
+            name: "Moderaterna",
+            image: Image("M")
+        ),
+        .SD: PartyInfo(
+            id: .SD,
+            name: "Sverigedemokraterna",
+            image: Image("SD")
+        ),
+        .C: PartyInfo(
+            id: .C,
+            name: "Centerpartiet",
+            image: Image("C")
+        ),
+        .V: PartyInfo(
+            id: .V,
+            name: "Vänsterpartiet",
+            image: Image("V")
+        ),
+        .KD: PartyInfo(
+            id: .KD,
+            name: "Kristdemokraterna",
+            image: Image("KD")
+        ),
+        .L: PartyInfo(
+            id: .L,
+            name: "Liberalerna",
+            image: Image("L")
+        ),
+        .MP: PartyInfo(
+            id: .MP,
+            name: "Miljöpartiet",
+            image: Image("MP")
+        ),
+    ]
 
-func createStandpointsMap(standpoints: [Standpoint]) -> [String: [Standpoint]] {
-    return standpoints.reduce(into: [:]) { res, curr in
-        var currContent = res[curr.party] ?? []
-        currContent.append(curr)
-        res[curr.party] = currContent
+    static func createStandpointsMap(standpoints: [Standpoint]) -> [PartyKey: [Standpoint]] {
+        return standpoints.reduce(into: [:]) { res, curr in
+            var currContent = res[curr.party] ?? []
+            currContent.append(curr)
+            res[curr.party] = currContent
+        }
     }
 }

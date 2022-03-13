@@ -6,24 +6,24 @@
 //
 
 struct SubjectListEntry: Decodable, Identifiable {
-    var id: Int
-    var name: String
-    var related_subjects: [Int]
+    let id: Int
+    let name: String
+    let related_subjects: [Int]
 }
 
 struct Standpoint: Decodable, Identifiable {
-    var id: String
-    var title: String
-    var content: [String]
-    var date: String
-    var link: String
-    var party: String
-    var subject: Int
+    let id: String
+    let title: String
+    let content: [String]
+    let date: String
+    let link: String
+    let party: PartyKey
+    let subject: Int
 }
 
 struct Subject: Decodable, Identifiable {
-    var id: Int
-    var name: String
-    var related_subjects: [SubjectListEntry]
-    var standpoints: [Standpoint]
+    let id: Int
+    let name: String
+    let related_subjects: [SubjectListEntry]
+    let standpoints: [Standpoint]
 }

@@ -8,17 +8,17 @@
 import Foundation
 
 struct Decision: Identifiable, Decodable {
-    var id: String
-    var paragraph: String
-    var paragraphTitle: String
-    var authority: String
-    var denomination: String
-    var title: String
-    var voteSearchTerm: String
-    var votesExists: Bool
+    let id: String
+    let paragraph: String
+    let paragraphTitle: String
+    let authority: AuthorityKey
+    let denomination: String
+    let title: String
+    let voteSearchTerm: String
+    let votesExists: Bool
 }
 
-struct DecisionsResponse: Decodable {
-    var pages: Int
-    var decisions: [Decision]
+struct DecisionsResponse: Decodable, Paginated {
+    let pages: Int
+    let decisions: [Decision]
 }

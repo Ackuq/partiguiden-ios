@@ -13,7 +13,7 @@ struct PartyView: View {
 
     init(partyInfo: PartyInfo) {
         self.partyInfo = partyInfo
-        viewModel = APIViewModel(loader: ApiManager.shared.getPartyData(endpoint: EndpointCases.getPartyData(abbreviation: partyInfo.letter)))
+        viewModel = APIViewModel(loader: APIManager.getPartyData(endpoint: EndpointCases.getPartyData(abbreviation: partyInfo.id.rawValue)))
     }
 
     var body: some View {
@@ -43,7 +43,7 @@ struct PartyView: View {
 
                     Divider()
                     Section(header: Text("Biografi").font(.headline)) {
-                        Text(.init(parseHTML(html: partyData.abstract)))
+                        Text(parseHTML(html: partyData.abstract))
                     }
                     Spacer()
                 }
@@ -58,7 +58,7 @@ struct PartyView: View {
 struct PartyView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PartyView(partyInfo: partyLetterDict["S"]!)
+            PartyView(partyInfo: PartyManager.parties[.S]!)
         }
     }
 }
