@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol Paginated {
+protocol PaginatedResponse {
     var pages: Int { get }
 }

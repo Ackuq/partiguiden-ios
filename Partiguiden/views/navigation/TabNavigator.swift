@@ -53,6 +53,13 @@ struct TabNavigator: View {
                     Text("Voteringar")
                 }
                 .tag(3)
+            MembersView()
+                .tabItem {
+                    Image(systemName: "person.fill")
+                    Text("Ledamöter")
+                }
+                .tag(4)
+
         }
         .environmentObject(tabBarState)
     }

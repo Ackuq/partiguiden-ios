@@ -8,50 +8,50 @@
 import Foundation
 import SwiftUI
 
-enum Winner: String, Decodable {
+enum WinnerResponse: String, Decodable {
     case yes, no, draw
 }
 
-struct VotingResult: Decodable {
-    let yes: [PartyKey]
-    let no: [PartyKey]
-    let winner: Winner
+struct VotingResultResponse: Decodable {
+    let yes: [Party]
+    let no: [Party]
+    let winner: WinnerResponse
 }
 
-struct VoteListEntry: Decodable, Identifiable {
+struct VoteListEntryResponse: Decodable, Identifiable {
     let id = UUID()
     
     let title: String
-    let authority: AuthorityKey
+    let authority: Authority
     let documentId: String
     let proposition: Int
     let subtitle: String
-    let results: VotingResult
+    let results: VotingResultResponse
     
     private enum CodingKeys: String, CodingKey {
         case title, authority, documentId, proposition, subtitle, results
     }
 }
 
-struct VoteListResponse: Decodable, Paginated {
+struct VoteListResponse: Decodable, PaginatedResponse {
     let pages: Int
-    let votes: [VoteListEntry]
+    let votes: [VoteListEntryResponse]
 }
 
-struct VoteDescription: Decodable {
+struct VoteDescriptionResponse: Decodable {
     var yes: String
     var no: String
     var refrain: String
     var abscent: String
 }
 
-struct ProcessedDocument: Decodable, Identifiable {
+struct ProcessedDocumentResponse: Decodable, Identifiable {
     let id: String
     let label: String
     let proposals: String?
 }
 
-struct AppendixItem: Decodable, Identifiable {
+struct AppendixItemResponse: Decodable, Identifiable {
     let titel: String
     let dok_id: String
     let fil_url: String
@@ -59,26 +59,26 @@ struct AppendixItem: Decodable, Identifiable {
     var id: String { dok_id }
 }
 
-struct VotingParticipants: Decodable {
-    let total: VoteDescription
-    let noParty: VoteDescription
-    let S: VoteDescription
-    let M: VoteDescription
-    let SD: VoteDescription
-    let C: VoteDescription
-    let V: VoteDescription
-    let KD: VoteDescription
-    let L: VoteDescription
-    let MP: VoteDescription
+struct VotingParticipantsResponse: Decodable {
+    let total: VoteDescriptionResponse
+    let noParty: VoteDescriptionResponse
+    let S: VoteDescriptionResponse
+    let M: VoteDescriptionResponse
+    let SD: VoteDescriptionResponse
+    let C: VoteDescriptionResponse
+    let V: VoteDescriptionResponse
+    let KD: VoteDescriptionResponse
+    let L: VoteDescriptionResponse
+    let MP: VoteDescriptionResponse
 }
 
-struct Vote: Decodable {
+struct VoteResponse: Decodable {
     let title: String
     let description: String
-    let authority: AuthorityKey
+    let authority: Authority
     let propositionText: String
-    let processedDocuments: [ProcessedDocument]
-    let appendix: [AppendixItem]
+    let processedDocuments: [ProcessedDocumentResponse]
+    let appendix: [AppendixItemResponse]
     let decision: String
-    let voting: VotingParticipants
+    let voting: VotingParticipantsResponse
 }

@@ -11,15 +11,12 @@ import SwiftUI
 struct VoteResultListView: View {
     var title: String
     var color: Color
-    var parties: [PartyKey]
-
-    @Environment(\.colorScheme) var colorScheme
+    var parties: [Party]
 
     var body: some View {
         ZStack {
             Rectangle()
-                .foregroundColor(color.opacity(0.75))
-                .if(colorScheme == .dark) { $0.opacity(0.5) }
+                .foregroundColor(color)
                 .frame(maxWidth: .infinity)
             VStack {
                 Text(title)
@@ -28,8 +25,9 @@ struct VoteResultListView: View {
                     .padding(.top)
                 HStack {
                     Spacer()
-                    ForEach(parties, id: \.self) { partyKey in
-                        let partyInfo = PartyManager.parties[partyKey]!
+                    ForEach(parties) { party in
+                        let partyInfo = party.data
+                        
                         partyInfo.image
                             .resizable()
                             .frame(width: 35, height: 35)
@@ -43,14 +41,12 @@ struct VoteResultListView: View {
 }
 
 struct VoteCardView: View {
-    var vote: VoteListEntry
+    var vote: VoteListEntryResponse
 
     @State var isActive = false
 
-    @Environment(\.colorScheme) var colorScheme
-
     var body: some View {
-        let authorityInfo = AuthorityManager.authorities[vote.authority]
+        let authorityData = vote.authority.data
 
         ZStack {
             NavigationLink(destination: VoteView(id: vote.documentId, proposition: vote.proposition), isActive: $isActive) {}.hidden()
@@ -58,20 +54,17 @@ struct VoteCardView: View {
             Button(action: { isActive.toggle() }) {
                 VStack(alignment: .leading) {
                     VStack(alignment: .leading, spacing: 10) {
-                        if authorityInfo != nil {
-                            HStack {
-                                Text(authorityInfo!.description)
-                                    .font(.subheadline)
-                                    .bold()
-                                    .padding()
-                                Spacer()
-                            }
-                            .background(
-                                authorityInfo!.color
-                                    .if(colorScheme == .dark) { $0.opacity(0.5) }
-                            )
-                            .foregroundColor(.white)
+                        HStack {
+                            Text(authorityData.description)
+                                .font(.subheadline)
+                                .bold()
+                                .padding()
+                            Spacer()
                         }
+                        .background(
+                            authorityData.color
+                        )
+                        .foregroundColor(.white)
                         HStack {
                             Text(vote.title)
                                 .font(.headline)
@@ -85,21 +78,21 @@ struct VoteCardView: View {
                     }
 
                     VStack(spacing: 0) {
-                        VoteResultListView(title: "Ja", color: vote.results.winner == Winner
-                            .yes ? .green : .gray, parties: vote.results.yes)
-                        VoteResultListView(title: "Nej", color: vote.results.winner == Winner
-                            .no ? .red : .gray, parties: vote.results.no)
+                        VoteResultListView(title: "Ja", color: vote.results.winner == WinnerResponse
+                            .yes ? voteColors.yes : .gray, parties: vote.results.yes)
+                        VoteResultListView(title: "Nej", color: vote.results.winner == WinnerResponse
+                            .no ? voteColors.no : .gray, parties: vote.results.no)
                     }
                 }
             }
-            .buttonStyle(CardButtonStyle(backgroundColor: .bar, foregroundColor: .primary, usePadding: false, useSpacer: false))
+            .buttonStyle(CardButtonStyle(backgroundColor: .bar, foregroundColor: .primary, usePadding: false))
             .padding(.top, 10)
         }
     }
 }
 
 struct VotesView: View {
-    func createViewModel(page: Int, org: [AuthorityKey], search: String) -> APIViewModel<VoteListResponse> {
+    func createViewModel(page: Int, org: Set<Authority>, search: String) -> APIViewModel<VoteListResponse> {
         return APIViewModel(
             loader: APIManager.getVotes(
                 endpoint: endpoint(page: page, org: org, search: search)
@@ -111,11 +104,11 @@ struct VotesView: View {
         return VoteListResponse(pages: new.pages, votes: prev.votes + new.votes)
     }
 
-    func endpoint(page: Int, org: [AuthorityKey], search: String) -> EndpointCases {
+    func endpoint(page: Int, org: Set<Authority>, search: String) -> EndpointCases {
         return EndpointCases.getVotes(search: search, org: org.map { $0.rawValue }.joined(separator: ","), page: page)
     }
 
-    func reload(viewModel: APIViewModel<VoteListResponse>, page: Int, org: [AuthorityKey], search: String) {
+    func reload(viewModel: APIViewModel<VoteListResponse>, page: Int, org: Set<Authority>, search: String) {
         viewModel.loader = APIManager.getVotes(
             endpoint: endpoint(page: page, org: org, search: search)
         )

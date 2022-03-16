@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		770A717427E13393009E4641 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770A717327E13393009E4641 /* UIImage.swift */; };
-		770A717627E142F8009E4641 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770A717527E142F8009E4641 /* UIColor.swift */; };
 		770A717827E14D6C009E4641 /* VoteSummaryChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770A717727E14D6C009E4641 /* VoteSummaryChartView.swift */; };
 		77208B2A27E1E44600328D22 /* VoteDetailChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77208B2927E1E44600328D22 /* VoteDetailChartView.swift */; };
 		77208B2C27E1FB3600328D22 /* ChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77208B2B27E1FB3600328D22 /* ChartMarkerView.swift */; };
@@ -45,6 +43,9 @@
 		77B7C3B727D5450C007C7927 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7C3B627D5450C007C7927 /* AsyncContentView.swift */; };
 		77B7C3B927D55A79007C7927 /* APIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7C3B827D55A79007C7927 /* APIViewModel.swift */; };
 		77B7C3BC27D6ABA8007C7927 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B7C3BB27D6ABA8007C7927 /* HTMLParser.swift */; };
+		77BFE6DC27E265B000ACCD07 /* ColorDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BFE6DB27E265B000ACCD07 /* ColorDescriptionView.swift */; };
+		77BFE6DE27E275C200ACCD07 /* MembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BFE6DD27E275C200ACCD07 /* MembersView.swift */; };
+		77BFE6E027E27A1C00ACCD07 /* Standpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BFE6DF27E27A1C00ACCD07 /* Standpoints.swift */; };
 		77C0E41627D3D12B009326EA /* PartyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C0E41527D3D12B009326EA /* PartyView.swift */; };
 		77C0E41827D3D2A7009326EA /* Members.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C0E41727D3D2A7009326EA /* Members.swift */; };
 /* End PBXBuildFile section */
@@ -67,8 +68,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		770A717327E13393009E4641 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
-		770A717527E142F8009E4641 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		770A717727E14D6C009E4641 /* VoteSummaryChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteSummaryChartView.swift; sourceTree = "<group>"; };
 		77208B2927E1E44600328D22 /* VoteDetailChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteDetailChartView.swift; sourceTree = "<group>"; };
 		77208B2B27E1FB3600328D22 /* ChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartMarkerView.swift; sourceTree = "<group>"; };
@@ -109,6 +108,9 @@
 		77B7C3B627D5450C007C7927 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
 		77B7C3B827D55A79007C7927 /* APIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIViewModel.swift; sourceTree = "<group>"; };
 		77B7C3BB27D6ABA8007C7927 /* HTMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
+		77BFE6DB27E265B000ACCD07 /* ColorDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDescriptionView.swift; sourceTree = "<group>"; };
+		77BFE6DD27E275C200ACCD07 /* MembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersView.swift; sourceTree = "<group>"; };
+		77BFE6DF27E27A1C00ACCD07 /* Standpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standpoints.swift; sourceTree = "<group>"; };
 		77C0E41527D3D12B009326EA /* PartyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyView.swift; sourceTree = "<group>"; };
 		77C0E41727D3D2A7009326EA /* Members.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Members.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,21 +140,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		770A717227E13386009E4641 /* extensions */ = {
-			isa = PBXGroup;
-			children = (
-				770A717327E13393009E4641 /* UIImage.swift */,
-				770A717527E142F8009E4641 /* UIColor.swift */,
-			);
-			path = extensions;
-			sourceTree = "<group>";
-		};
 		7748827F27DF6A0C00304937 /* charts */ = {
 			isa = PBXGroup;
 			children = (
 				770A717727E14D6C009E4641 /* VoteSummaryChartView.swift */,
 				77208B2927E1E44600328D22 /* VoteDetailChartView.swift */,
 				77208B2B27E1FB3600328D22 /* ChartMarkerView.swift */,
+				77BFE6DB27E265B000ACCD07 /* ColorDescriptionView.swift */,
 			);
 			path = charts;
 			sourceTree = "<group>";
@@ -181,7 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				7797612B27D16D04008E8559 /* Info.plist */,
-				770A717227E13386009E4641 /* extensions */,
 				7797612827D15EFE008E8559 /* structs */,
 				7797612427D154B1008E8559 /* managers */,
 				77B7C3BA27D6AB5C007C7927 /* utils */,
@@ -240,6 +233,7 @@
 				77A7218027D7E99F000B9388 /* DecisionsView.swift */,
 				77AADA3727DB940600ED4DAE /* VotesView.swift */,
 				77AADA4127DBF17B00ED4DAE /* VoteView.swift */,
+				77BFE6DD27E275C200ACCD07 /* MembersView.swift */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -304,6 +298,7 @@
 			children = (
 				77B7C3BB27D6ABA8007C7927 /* HTMLParser.swift */,
 				77735BC927E1DBE400611EF2 /* ColorUtils.swift */,
+				77BFE6DF27E27A1C00ACCD07 /* Standpoints.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -451,11 +446,11 @@
 				77208B2C27E1FB3600328D22 /* ChartMarkerView.swift in Sources */,
 				7797613827D2AF23008E8559 /* Parties.swift in Sources */,
 				77B7C3B927D55A79007C7927 /* APIViewModel.swift in Sources */,
+				77BFE6DC27E265B000ACCD07 /* ColorDescriptionView.swift in Sources */,
 				77AADA2C27DB6AC900ED4DAE /* DocumentView.swift in Sources */,
 				7797612727D154E1008E8559 /* APIManager.swift in Sources */,
 				770A717827E14D6C009E4641 /* VoteSummaryChartView.swift in Sources */,
 				77AADA3027DB6D5900ED4DAE /* HTMLView.swift in Sources */,
-				770A717427E13393009E4641 /* UIImage.swift in Sources */,
 				779760F427D13F3A008E8559 /* SubjectsView.swift in Sources */,
 				77AADA3A27DB94C400ED4DAE /* Votes.swift in Sources */,
 				77B7C3B527D54212007C7927 /* LoadingView.swift in Sources */,
@@ -465,10 +460,11 @@
 				77C0E41827D3D2A7009326EA /* Members.swift in Sources */,
 				77C0E41627D3D12B009326EA /* PartyView.swift in Sources */,
 				77A7218327D7EAFD000B9388 /* ParliamentDecisions.swift in Sources */,
-				770A717627E142F8009E4641 /* UIColor.swift in Sources */,
 				779760F227D13F3A008E8559 /* PartiguidenApp.swift in Sources */,
 				77AADA3E27DBAC1100ED4DAE /* ParliamentFilterView.swift in Sources */,
+				77BFE6E027E27A1C00ACCD07 /* Standpoints.swift in Sources */,
 				77735BCA27E1DBE400611EF2 /* ColorUtils.swift in Sources */,
+				77BFE6DE27E275C200ACCD07 /* MembersView.swift in Sources */,
 				77AADA4227DBF17B00ED4DAE /* VoteView.swift in Sources */,
 				7797612327D1458C008E8559 /* PartiesView.swift in Sources */,
 				77A7218127D7E99F000B9388 /* DecisionsView.swift in Sources */,

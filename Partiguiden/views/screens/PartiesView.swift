@@ -10,13 +10,13 @@ import SwiftUI
 struct PartiesView: View {
     var body: some View {
         NavigationView {
-            List(PartyKey.allCases, id: \.self) { partyKey in
-                let partyInfo = PartyManager.parties[partyKey]!
+            List(Party.allCases.sorted()) { party in
+                let partyData = party.data
 
-                NavigationLink(destination: PartyView(partyInfo: partyInfo)) {
+                NavigationLink(destination: PartyView(partyData: partyData)) {
                     HStack {
-                        partyInfo.image.resizable().frame(width: 40, height: 40)
-                        Text(partyInfo.name)
+                        partyData.image.resizable().frame(width: 40, height: 40)
+                        Text(partyData.name)
                     }
                 }
             }

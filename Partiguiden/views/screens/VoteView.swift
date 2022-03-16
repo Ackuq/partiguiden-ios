@@ -17,6 +17,7 @@ struct VotePropositionView: View {
                 .font(.headline)
             Text(proposition.replacingOccurrences(of: "\n", with: "").trimmingCharacters(in: .whitespacesAndNewlines))
                 .font(.body)
+                .padding(.bottom, 5)
             
             Button("Behandlade dokument", action: { showDocuments.toggle() })
             Divider()
@@ -38,8 +39,27 @@ struct VoteDescriptionView: View {
     }
 }
 
+struct ProcessedDocumentsView: View {
+    @State var selectedDocument: ProcessedDocumentResponse? = nil
+    var documents: [EnumeratedSequence<[ProcessedDocumentResponse]>.Element]
+    
+    init(documents: [ProcessedDocumentResponse]) {
+        self.documents = documents.enumerated().map({ $0 })
+    }
+    
+    var body: some View {
+        List(documents, id: \.element.id) { index, document in
+            Button("\(index) \(document.label)", action: { selectedDocument = document })
+        }.sheet(item: $selectedDocument) { document in
+            SheetView {
+                DocumentView(documentId: document.id)
+            }
+        }
+    }
+}
+
 struct AppendixView: View {
-    var appendix: [AppendixItem]
+    var appendix: [AppendixItemResponse]
     
     var body: some View {
         VStack(alignment: .leading){
@@ -81,7 +101,7 @@ struct VoteView: View {
     var id: String
     var proposition: Int
     
-    @ObservedObject var viewModel: APIViewModel<Vote>
+    @ObservedObject var viewModel: APIViewModel<VoteResponse>
     @State var showDocuments: Bool = false
     
     init(id: String, proposition: Int) {
@@ -116,14 +136,10 @@ struct VoteView: View {
                     
                 }
                 .sheet(isPresented: $showDocuments) {
-                    SheetView(title: "Behandlade dokument"){
-                        let documentWithIndex = vote.processedDocuments.enumerated().map({ $0 })
+                    SheetView {
+                        ProcessedDocumentsView(documents: vote.processedDocuments)
+                            .navigationTitle("Behandlade dokument")
                         
-                        List(documentWithIndex, id: \.element.id) { index, document in
-                            NavigationLink(destination: DocumentView(documentId: document.id)) {
-                                Text("[\(index)] \(document.label)")
-                            }
-                        }
                     }
                 }
             }
@@ -137,8 +153,9 @@ struct VoteView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-            VoteView(id: "H901UbU17", proposition: 4)
+            VoteView(id: "H901UU11", proposition: 9)
         }
+        .preferredColorScheme(.light)
         .environmentObject(tabBarState)
     }
 }

@@ -8,35 +8,35 @@
 import SwiftUI
 
 struct PartyView: View {
-    var partyInfo: PartyInfo
+    var partyData: PartyData
     
-    @ObservedObject var viewModel: APIViewModel<PartyData>
+    @ObservedObject var viewModel: APIViewModel<PartyDataResponse>
     
-    init(partyInfo: PartyInfo) {
-        self.partyInfo = partyInfo
-        viewModel = APIViewModel(loader: APIManager.getPartyData(endpoint: EndpointCases.getPartyData(abbreviation: partyInfo.id.rawValue)))
+    init(partyData: PartyData) {
+        self.partyData = partyData
+        viewModel = APIViewModel(loader: APIManager.getPartyData(endpoint: EndpointCases.getPartyData(abbreviation: partyData.id.rawValue)))
     }
     
     var body: some View {
         PopableView {
             AsyncContentView(source: viewModel) {
-                partyData in
+                partyDataResponse in
                 ScrollView {
                     VStack(alignment: .leading, spacing: 10) {
                         HStack {
-                            partyInfo.image
+                            partyData.image
                                 .resizable()
                                 .frame(width: 50, height: 50)
                                 .padding(.trailing, 10)
                             VStack(alignment: .leading) {
                                 Text("Hemsida")
-                                Link(partyData.website, destination: URL(string: partyData.website)!)
-                                    .foregroundColor(partyInfo.color)
+                                Link(partyDataResponse.website, destination: URL(string: partyDataResponse.website)!)
+                                    .foregroundColor(partyData.color)
                             }
                         }
                         Divider()
                         Section(header: Text("Ideologi").font(.headline)) {
-                            Text(partyData.ideology.joined(separator: ", "))
+                            Text(partyDataResponse.ideology.joined(separator: ", "))
                             HStack {
                                 Text("Källa:")
                                 Link("https://wikipedia.se", destination: URL(string: "https://wikipedia.se")!)
@@ -45,14 +45,14 @@ struct PartyView: View {
                         
                         Divider()
                         Section(header: Text("Biografi").font(.headline)) {
-                            Text(parseHTML(html: partyData.abstract))
+                            Text(parseHTML(html: partyDataResponse.abstract))
                         }
                         Spacer()
                     }
                     .padding(10)
                 }
             }
-            .navigationTitle(partyInfo.name)
+            .navigationTitle(partyData.name)
         }
     }
 }
@@ -62,7 +62,7 @@ struct PartyView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-            PartyView(partyInfo: PartyManager.parties[.S]!)
+            PartyView(partyData: Party.S.data)
         }
         .environmentObject(tabBarState)
     }

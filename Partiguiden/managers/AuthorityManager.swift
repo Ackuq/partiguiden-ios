@@ -7,20 +7,21 @@
 
 import SwiftUI
 
-enum AuthorityKey: String, Codable, CaseIterable {
-    case AU, CU, FiU, FöU, JuU, KU, KrU, MJU, NU, SkU, SfU, SoU, TU, UbU, UU, UFöU
-}
-
 struct AuthorityData: Identifiable {
-    let id: AuthorityKey
-    var code: AuthorityKey { id }
+    let id: Authority
+    var code: Authority { id }
     let name: String
     let description: String
     var color: Color { Color(code.rawValue) }
 }
 
-enum AuthorityManager {
-    static let authorities: [AuthorityKey: AuthorityData] = [
+enum Authority: String, Codable, CaseIterable, Identifiable {
+    case AU, CU, FiU, FöU, JuU, KU, KrU, MJU, NU, SkU, SfU, SoU, TU, UbU, UU, UFöU
+    
+    var id: Self { self }
+    var data: AuthorityData { Authority._authorityData[self]! }
+    
+    private static let _authorityData: [Authority: AuthorityData] = [
         .AU: AuthorityData(
             id: .AU,
             name: "Arbetsmarknadsutskottet",

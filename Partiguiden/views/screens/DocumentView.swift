@@ -46,7 +46,7 @@ struct DocumentView: View {
 
     let headerString = "<header><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'></header>"
 
-    @ObservedObject var viewModel: APIViewModel<Document>
+    @ObservedObject var viewModel: APIViewModel<DocumentResponse>
     init(documentId: String) {
         self.documentId = documentId
 

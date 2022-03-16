@@ -87,6 +87,14 @@ struct ChartMarkerView: View {
             .fixedSize()
         }
         .fixedSize()
+        .transition(
+            .scale.animation(
+                .spring(
+                    response: 0.3,
+                    dampingFraction: 0.7
+                )
+            )
+        )
     }
 }
 

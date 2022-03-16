@@ -7,86 +7,89 @@
 
 import SwiftUI
 
-enum PartyKey: String, Decodable, CaseIterable, Comparable {
-    static func < (lhs: PartyKey, rhs: PartyKey) -> Bool {
-        lhs.rawValue < rhs.rawValue
-    }
-
-    case S, M, SD, C, V, KD, L, MP
-}
-
-struct PartyInfo: Identifiable {
-    
-    let id: PartyKey
-    var letter: PartyKey { id }
+struct PartyData: Identifiable {
+    let id: Party
+    var letter: Party { id }
     let name: String
     var color: Color { Color(id.rawValue) }
     let image: Image
-    let uiImage: UIImage
 }
 
-enum PartyManager {
+enum Party: String, Decodable, CaseIterable, Comparable, Identifiable {
+    case S, M, SD, C, V, KD, L, MP
     
-    static let parties: [PartyKey: PartyInfo] = [
-        .S: PartyInfo(
-            id: .S,
-            name: "Socialdemokraterna",
-            image: Image("S"),
-            uiImage: UIImage(imageLiteralResourceName: "S")
-        ),
-        .M: PartyInfo(
-            id: .M,
-            name: "Moderaterna",
-            image: Image("M"),
-            uiImage: UIImage(imageLiteralResourceName: "M")
-        ),
-        .SD: PartyInfo(
-            id: .SD,
-            name: "Sverigedemokraterna",
-            image: Image("SD"),
-            uiImage: UIImage(imageLiteralResourceName: "SD")
-        ),
-        .C: PartyInfo(
-            id: .C,
-            name: "Centerpartiet",
-            image: Image("C"),
-            uiImage: UIImage(imageLiteralResourceName: "C")
-        ),
-        .V: PartyInfo(
-            id: .V,
-            name: "Vänsterpartiet",
-            image: Image("V"),
-            uiImage: UIImage(imageLiteralResourceName: "V")
-        ),
-        .KD: PartyInfo(
-            id: .KD,
-            name: "Kristdemokraterna",
-            image: Image("KD"),
-            uiImage: UIImage(imageLiteralResourceName: "KD")
-        ),
-        .L: PartyInfo(
-            id: .L,
-            name: "Liberalerna",
-            image: Image("L"),
-            uiImage: UIImage(imageLiteralResourceName: "L")
-        ),
-        .MP: PartyInfo(
-            id: .MP,
-            name: "Miljöpartiet",
-            image: Image("MP"),
-            uiImage: UIImage(imageLiteralResourceName: "MP")
-        ),
-    ]
+    var id: Self { self }
+    var data: PartyData { Party._partyData[self]! }
     
-    static func getPartyIndex(partyKey: PartyKey) -> Int? {
-        return Array(parties.keys).firstIndex(of: partyKey)
-    }
-
-    static func createStandpointsMap(standpoints: [Standpoint]) -> [PartyKey: [Standpoint]] {
-        return standpoints.reduce(into: [:]) { res, curr in
-            var currContent = res[curr.party] ?? []
-            currContent.append(curr)
-            res[curr.party] = currContent
+    private var _sortOrder: Int {
+        switch self {
+        case .S:
+            return 0
+        case .M:
+            return 1
+        case .SD:
+            return 2
+        case .C:
+            return 3
+        case .V:
+            return 4
+        case .KD:
+            return 5
+        case .L:
+            return 6
+        case .MP:
+            return 7
         }
     }
+    
+    static func ==(lhs: Party, rhs: Party) -> Bool {
+           return lhs._sortOrder == rhs._sortOrder
+       }
+
+    static func <(lhs: Party, rhs: Party) -> Bool {
+        return lhs._sortOrder < rhs._sortOrder
+    }
+    
+    private static let _partyData: [Party: PartyData] = [
+        .S: PartyData(
+            id: .S,
+            name: "Socialdemokraterna",
+            image: Image("S")
+        ),
+        .M: PartyData(
+            id: .M,
+            name: "Moderaterna",
+            image: Image("M")
+        ),
+        .SD: PartyData(
+            id: .SD,
+            name: "Sverigedemokraterna",
+            image: Image("SD")
+        ),
+        .C: PartyData(
+            id: .C,
+            name: "Centerpartiet",
+            image: Image("C")
+        ),
+        .V: PartyData(
+            id: .V,
+            name: "Vänsterpartiet",
+            image: Image("V")
+        ),
+        .KD: PartyData(
+            id: .KD,
+            name: "Kristdemokraterna",
+            image: Image("KD")
+        ),
+        .L: PartyData(
+            id: .L,
+            name: "Liberalerna",
+            image: Image("L")
+        ),
+        .MP: PartyData(
+            id: .MP,
+            name: "Miljöpartiet",
+            image: Image("MP")
+        ),
+    ]
 }

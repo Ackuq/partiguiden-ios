@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct PartyStandpointsListView: View {
-    var standpoints: [Standpoint]
-    var partyInfo: PartyInfo
+    var standpoints: [StandpointResponse]
+    var partyData: PartyData
     
     var body: some View {
         ScrollView {
@@ -19,12 +19,12 @@ struct PartyStandpointsListView: View {
                         .font(.headline)
                     ForEach(standpoint.content, id: \.self) { content in
                         HStack(alignment: .top) {
-                            Rectangle().foregroundColor(partyInfo.color).frame(width: 10, height: 10).padding(.vertical, 7.5)
+                            Rectangle().foregroundColor(partyData.color).frame(width: 10, height: 10).padding(.vertical, 7.5)
                             Text(content)
                         }
                     }
                     Link("Läs mer på partiets hemsida", destination: URL(string: standpoint.link)!)
-                        .foregroundColor(partyInfo.color)
+                        .foregroundColor(partyData.color)
                     if standpoint.id != standpoints.last?.id {
                         Divider()
                     }
@@ -38,9 +38,9 @@ struct StandpointsView: View {
     var id: Int
     var name: String
     
-    @ObservedObject var viewModel: APIViewModel<Subject>
+    @ObservedObject var viewModel: APIViewModel<SubjectResponse>
     
-    @State var selectedParty: PartyInfo? = nil
+    @State var selectedParty: PartyData? = nil
     
     init(id: Int, name: String) {
         self.id = id
@@ -51,11 +51,12 @@ struct StandpointsView: View {
     var body: some View {
         PopableView {
             AsyncContentView(source: viewModel) { subject in
-                let partyStandpoints = PartyManager.createStandpointsMap(standpoints: subject.standpoints)
+                let partyStandpoints = createStandpointsMap(standpoints: subject.standpoints)
+                
                 ScrollView {
                     LazyVStack {
-                        ForEach(partyStandpoints.keys.sorted(), id: \.rawValue) { party in
-                            let partyInfo = PartyManager.parties[party]!
+                        ForEach(partyStandpoints.keys.sorted()) { party in
+                            let partyInfo = party.data
                             Button(action: { self.selectedParty = partyInfo }) {
                                 Text(partyInfo.name)
                                     .bold()
@@ -69,10 +70,11 @@ struct StandpointsView: View {
                         }
                     }
                 }
-                .sheet(item: $selectedParty) { partyInfo in
-                    let standpoints = partyStandpoints[partyInfo.id]!
-                    SheetView(title: partyInfo.name) {
-                        PartyStandpointsListView(standpoints: standpoints, partyInfo: partyInfo)
+                .sheet(item: $selectedParty) { partyData in
+                    let standpoints = partyStandpoints[partyData.id]!
+                    SheetView {
+                        PartyStandpointsListView(standpoints: standpoints, partyData: partyData)
+                            .navigationTitle(partyData.name)
                     }
                 }
             }

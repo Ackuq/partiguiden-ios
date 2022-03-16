@@ -9,8 +9,9 @@ import Combine
 import SwiftUI
 
 struct DecisionDetailView: View {
-    var decision: Decision
-
+    var decision: DecisionResponse
+    @State var showDocument: Bool = false
+    
     var body: some View {
         VStack(spacing: 0) {
             ScrollView {
@@ -25,54 +26,57 @@ struct DecisionDetailView: View {
                     Divider()
                     Text(parseHTML(html: decision.paragraph))
                     Divider()
-                    NavigationLink(destination: DocumentView(documentId: decision.id)) {
-                        Text("Läs mer om betänkandet")
-                    }
+                    Button("Läs mer om betänkandet", action: {
+                        showDocument.toggle()
+                    })
                     .buttonStyle(.bordered)
                 }
             }
             .padding(.horizontal)
+            .sheet(isPresented: $showDocument) {
+                SheetView {
+                    DocumentView(documentId: decision.id)
+                }
+            }
         }
     }
 }
 
 struct DecisionCardView: View {
-    @Environment(\.colorScheme) var colorScheme
-    var decision: Decision
-    var onPress: (Decision) -> Void
+    var decision: DecisionResponse
+    var onPress: (DecisionResponse) -> Void
 
     var body: some View {
-        let authorityInfo = AuthorityManager.authorities[decision.authority]
-        let backgroundColor = colorScheme == .dark ? authorityInfo?.color.opacity(0.5) : authorityInfo?.color
+        let authorityData = decision.authority.data
 
         Button(action: { onPress(decision) }) {
-            VStack(alignment: .leading, spacing: 10) {
-                if authorityInfo != nil {
+            HStack {
+                VStack(alignment: .leading, spacing: 10) {
                     HStack {
-                        Text(authorityInfo!.description)
+                        Text(authorityData.description)
                             .font(.subheadline)
                             .foregroundColor(.white)
                             .bold()
                     }
+                    HStack {
+                        Text(decision.paragraphTitle)
+                            .font(.headline)
+                    }
+                    HStack {
+                        Text(decision.title)
+                            .font(.body)
+                    }
                 }
-                HStack {
-                    Text(decision.paragraphTitle)
-                        .font(.headline)
-                        .multilineTextAlignment(.leading)
-                }
-                HStack {
-                    Text(decision.title)
-                        .font(.body)
-                        .multilineTextAlignment(.leading)
-                }
+                Spacer()
             }
+            .padding()
         }
-        .buttonStyle(CardButtonStyle(backgroundColor: backgroundColor ?? .accentColor))
+        .buttonStyle(CardButtonStyle(backgroundColor: authorityData.color))
     }
 }
 
 struct DecisionsView: View {
-    func createViewModel(page: Int, org: [AuthorityKey], search: String) -> APIViewModel<DecisionsResponse> {
+    func createViewModel(page: Int, org: Set<Authority>, search: String) -> APIViewModel<DecisionsResponse> {
         return APIViewModel(
             loader: APIManager.getDecisions(
                 endpoint: endpoint(page: page, org: org, search: search)
@@ -84,11 +88,12 @@ struct DecisionsView: View {
         return DecisionsResponse(pages: new.pages, decisions: prev.decisions + new.decisions)
     }
 
-    func endpoint(page: Int, org: [AuthorityKey], search: String) -> EndpointCases {
+    func endpoint(page: Int, org: Set<Authority>, search: String) -> EndpointCases {
+
         return EndpointCases.getDecisions(search: search, org: org.map { $0.rawValue }.joined(separator: ","), page: page)
     }
 
-    func reload(viewModel: APIViewModel<DecisionsResponse>, page: Int, org: [AuthorityKey], search: String) {
+    func reload(viewModel: APIViewModel<DecisionsResponse>, page: Int, org: Set<Authority>, search: String) {
         viewModel.loader = APIManager.getDecisions(
             endpoint: endpoint(page: page, org: org, search: search)
         )
@@ -99,7 +104,7 @@ struct DecisionsView: View {
         return APIManager.getDecisions(endpoint: endpoint)
     }
 
-    @State var selectedDecision: Decision? = nil
+    @State var selectedDecision: DecisionResponse? = nil
 
     var body: some View {
         ParliamentFilterView(
@@ -120,8 +125,9 @@ struct DecisionsView: View {
                 }
                 .listRowSeparator(.hidden)
             }.sheet(item: $selectedDecision) { decision in
-                SheetView(title: "Besult i korthet") {
+                SheetView {
                     DecisionDetailView(decision: decision)
+                        .navigationTitle("Besult i korthet")
                 }
             }
         }

@@ -32,7 +32,6 @@ struct VoteSummaryBarView: View {
                 if Int(vote)! > 7 && showMarker {
                     ChartMarkerView(content: vote, rotate: true)
                         .offset(x: 0, y: VoteSummaryChartView.height * 2)
-                        .transition(.scale)
                         .zIndex(10)
                 }
             }
@@ -55,15 +54,14 @@ struct VoteSummaryBarView: View {
 }
 
 struct VoteSummaryChartView: View {
-    @Environment(\.colorScheme) var colorScheme
     @State var currentMarker: UUID? = nil
     @State var animate: Bool = false
     
-    var votes: VoteDescription
+    var votes: VoteDescriptionResponse
     var total: Double
     let width = UIScreen.main.bounds.width - CGFloat(16 * 2)
     
-    init(votes: VoteDescription) {
+    init(votes: VoteDescriptionResponse) {
         self.votes = votes
         self.total = Double(votes.yes)! + Double(votes.no)! + Double(votes.refrain)! + Double(votes.abscent)!
     }
@@ -74,8 +72,6 @@ struct VoteSummaryChartView: View {
     }
     
     var body: some View {
-        let voteColors = colorScheme == .light ? voteColorsLight : voteColorsDark
-        
         VStack {
             ZStack(alignment: .trailing){
                 HStack(spacing: 0) {
@@ -105,47 +101,25 @@ struct VoteSummaryChartView: View {
                     )
                 }
                 Rectangle()
-                    .frame(height: 20)
                     .foregroundColor(Color(UIColor.systemBackground))
+                    .frame(height: 20)
                     .frame(width: animate ? 1 : width)
-                    .animation(Animation.easeInOut(duration: 1), value: animate)
             }
             .padding(.bottom, 30)
-            .onAppear { animate = true }
-            
-            HStack {
-                HStack {
-                    Rectangle()
-                        .fill(voteColors.yes)
-                        .frame(width: 10, height: 10)
-                    Text("Ja")
-                }
-                HStack {
-                    Rectangle()
-                        .fill(voteColors.no)
-                        .frame(width: 10, height: 10)
-                    Text("Nej")
-                }
-                HStack {
-                    Rectangle()
-                        .fill(voteColors.refrain)
-                        .frame(width: 10, height: 10)
-                    Text("Avstående")
-                }
-                HStack {
-                    Rectangle()
-                        .fill(voteColors.abscent)
-                        .frame(width: 10, height: 10)
-                    Text("Frånvarande")
+            .onAppear {
+                withAnimation(.easeInOut(duration: 1.0)) {
+                    animate = true
                 }
             }
+            
+            ColorDescriptionView()
         }
     }
 }
 
 struct VoteSummaryChartView_Previews: PreviewProvider {
     static var previews: some View {
-        VoteSummaryChartView(votes: VoteDescription(yes: "100", no: "7", refrain: "50", abscent: "99"))
+        VoteSummaryChartView(votes: VoteDescriptionResponse(yes: "100", no: "7", refrain: "50", abscent: "99"))
             .preferredColorScheme(.dark)
     }
 }

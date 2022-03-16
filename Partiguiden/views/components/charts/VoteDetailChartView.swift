@@ -33,7 +33,6 @@ struct PartyVoteBar: View {
                 if Int(vote)! > 3 && showMarker {
                     ChartMarkerView(content: vote)
                         .offset(x: 0, y: (-PartyVoteDetailView.height / 2) + 5)
-                        .transition(.scale)
                         .zIndex(10)
                 }
             }
@@ -57,9 +56,8 @@ struct PartyVoteBar: View {
 }
 
 struct PartyVoteDetailView: View {
-    var votes: VoteDescription
-    var party: PartyInfo
-    let voteColors: VoteColor
+    var votes: VoteDescriptionResponse
+    var party: PartyData
     
     @Binding var currentMarker: UUID?
     @State var animate = false
@@ -85,86 +83,82 @@ struct PartyVoteDetailView: View {
                     PartyVoteBar(vote: votes.abscent, color: voteColors.abscent, currentMarker: $currentMarker)
                 }
                 Rectangle()
+                    .frame(height: PartyVoteDetailView.height)
                     .frame(
-                        width: animate ? 1 : PartyVoteDetailView.getWidth(value: String(total)),
-                        height: PartyVoteDetailView.height
+                        width: animate ? 1 : PartyVoteDetailView.getWidth(value: String(total))
                     )
                     .foregroundColor(Color(UIColor.systemBackground))
-                    .animation(Animation.easeInOut(duration: 1), value: animate)
             }
         }
-        .onAppear { animate = true }
+        .onAppear {
+            withAnimation(.easeInOut(duration: 1.0)) {
+                animate = true
+            }
+        }
         
     }
 }
 
 struct VoteDetailChartView: View {
-    @Environment(\.colorScheme) var colorScheme
-    
     @State var currentMarker: UUID? = nil
-    var voting: VotingParticipants
+    var voting: VotingParticipantsResponse
     
     
     var body: some View {
-        let voteColors = colorScheme == .light ? voteColorsLight : voteColorsDark
-        
         LazyVStack(alignment: .leading) {
             PartyVoteDetailView(
                 votes: voting.S,
-                party: PartyManager.parties[PartyKey.S]!,
-                voteColors: voteColors,
+                party: Party.S.data,
                 currentMarker: $currentMarker
             )
             PartyVoteDetailView(
                 votes: voting.M,
-                party: PartyManager.parties[PartyKey.M]!,
-                voteColors: voteColors,
+                party: Party.M.data,
                 currentMarker: $currentMarker
             )
             PartyVoteDetailView(
                 votes: voting.SD,
-                party: PartyManager.parties[PartyKey.SD]!,
-                voteColors: voteColors,
+                party: Party.SD.data,
                 currentMarker: $currentMarker
             )
             PartyVoteDetailView(
                 votes: voting.C,
-                party: PartyManager.parties[PartyKey.C]!,
-                voteColors: voteColors,
+                party: Party.C.data,
                 currentMarker: $currentMarker
             )
             PartyVoteDetailView(
                 votes: voting.V,
-                party: PartyManager.parties[PartyKey.V]!,
-                voteColors: voteColors,
+                party: Party.V.data,
                 currentMarker: $currentMarker
             )
             PartyVoteDetailView(
                 votes: voting.KD,
-                party: PartyManager.parties[PartyKey.KD]!,
-                voteColors: voteColors,
+                party: Party.KD.data,
                 currentMarker: $currentMarker
             )
             PartyVoteDetailView(
                 votes: voting.L,
-                party: PartyManager.parties[PartyKey.L]!,
-                voteColors: voteColors,
+                party: Party.L.data,
                 currentMarker: $currentMarker
             )
             PartyVoteDetailView(
                 votes: voting.MP,
-                party: PartyManager.parties[PartyKey.MP]!,
-                voteColors: voteColors,
+                party: Party.MP.data,
                 currentMarker: $currentMarker
             )
+            HStack {
+                Spacer()
+                ColorDescriptionView()
+                Spacer()
+            }
         }
     }
 }
 
 struct VoteDetailChartView_Previews: PreviewProvider {
-    static let voteDescription = VoteDescription(yes: "3", no: "4", refrain: "10", abscent: "10")
+    static let voteDescription = VoteDescriptionResponse(yes: "3", no: "4", refrain: "10", abscent: "10")
     
-    static let votingParticipants = VotingParticipants(
+    static let votingParticipants = VotingParticipantsResponse(
         total: voteDescription,
         noParty: voteDescription,
         S: voteDescription,

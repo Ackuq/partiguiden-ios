@@ -5,7 +5,7 @@
 //  Created by Axel Pettersson on 2022-03-05.
 //
 
-struct MemberDocument: Decodable, Identifiable {
+struct MemberDocumentResponse: Decodable, Identifiable {
     let id: String
     let authority: String?
     let title: String
@@ -13,19 +13,19 @@ struct MemberDocument: Decodable, Identifiable {
     let altTitle: String
 }
 
-struct MemberDocuments: Decodable {
+struct MemberDocumentsResponse: Decodable {
     let pages: Int
     let count: Int
-    let documents: [MemberDocuments]
+    let documents: [MemberDocumentsResponse]
 }
 
-struct Information: Decodable {
+struct InformationResponse: Decodable {
     let code: String
     let content: [String]
     let type: String
 }
 
-struct Task: Decodable {
+struct TaskResponse: Decodable {
     let authorityCode: String
     let role: String
     let content: [String]
@@ -35,7 +35,7 @@ struct Task: Decodable {
     let to: String
 }
 
-struct Member: Decodable, Identifiable {
+struct MemberResponse: Decodable, Identifiable {
     let id: String
     let sourceId: String
     let firstName: String
@@ -45,13 +45,13 @@ struct Member: Decodable, Identifiable {
     let party: String
     let district: String
     let status: String
-    let information: [Information]
-    let tasks: [Task]
+    let information: [InformationResponse]
+    let tasks: [TaskResponse]
     let isLeader: Bool
     let absence: Int?
 }
 
-struct MemberListEntry: Decodable, Identifiable {
+struct MemberListEntryResponse: Decodable, Identifiable {
     let id: String
     let sourceId: String
     let firstName: String
@@ -61,12 +61,12 @@ struct MemberListEntry: Decodable, Identifiable {
     let party: String
     let district: String
     let status: String
-    let information: [Information]
-    let tasks: [Task]
+    let information: [InformationResponse]
+    let tasks: [TaskResponse]
     let isLeader: Bool
 }
 
-struct Leader: Decodable, Identifiable {
+struct LeaderResponse: Decodable, Identifiable {
     let id: String
     let sourceId: String
     let firstName: String
@@ -76,8 +76,8 @@ struct Leader: Decodable, Identifiable {
     let party: String
     let district: String
     let status: String
-    let information: [Information]
-    let tasks: [Task]
+    let information: [InformationResponse]
+    let tasks: [TaskResponse]
     let isLeader: Bool
     let role: String
 }

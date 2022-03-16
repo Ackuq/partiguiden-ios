@@ -9,13 +9,11 @@ import Foundation
 import SwiftUI
 
 
-struct VoteColor {
-    var yes: Color = .green.opacity(0.75)
-    var no: Color = .red.opacity(0.75)
-    var refrain: Color = Color(uiColor: .systemGray4)
-    var abscent: Color = Color(uiColor: .systemGray)
+struct VoteColors {
+    var yes: Color
+    var no: Color
+    var refrain: Color
+    var abscent: Color
 }
 
-var voteColorsLight = VoteColor()
-
-var voteColorsDark = VoteColor(yes: .green.opacity(0.5), no: .red.opacity(0.5))
+var voteColors = VoteColors(yes: Color("YesVote"), no: Color("NoVote"), refrain: Color("RefrainVote"), abscent: Color("AbscentVote"))

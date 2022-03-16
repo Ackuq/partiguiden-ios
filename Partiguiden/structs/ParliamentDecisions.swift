@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct Decision: Identifiable, Decodable {
+struct DecisionResponse: Identifiable, Decodable {
     let id: String
     let paragraph: String
     let paragraphTitle: String
-    let authority: AuthorityKey
+    let authority: Authority
     let denomination: String
     let title: String
     let voteSearchTerm: String
     let votesExists: Bool
 }
 
-struct DecisionsResponse: Decodable, Paginated {
+struct DecisionsResponse: Decodable, PaginatedResponse {
     let pages: Int
-    let decisions: [Decision]
+    let decisions: [DecisionResponse]
 }

@@ -8,9 +8,35 @@
 import Combine
 import SwiftUI
 
-struct ParliamentFilterView<ResponseType: Paginated, Content>: View where Content: View {
+struct ParliamentSheetFilterView: View {
+    @Binding var org: Set<Authority>
+    
+    var body: some View {
+        List {
+            ForEach(Authority.allCases) { authority in
+                let authorityData = authority.data
+
+                let binding: Binding<Bool> = Binding(
+                    get: {org.contains(authority)},
+                    set: {
+                        switch($0) {
+                        case true:
+                            org.insert(authority)
+                        case false:
+                            org.remove(authority)
+                        }
+                    }
+                )
+
+                Toggle(authorityData.description, isOn: binding)
+            }
+        }
+    }
+}
+
+struct ParliamentFilterView<ResponseType: PaginatedResponse, Content>: View where Content: View {
     @State var page: Int
-    @State var org: [AuthorityKey]
+    @State var org: Set<Authority>
     @State var search: String
     @State var filterView: Bool
     
@@ -18,13 +44,13 @@ struct ParliamentFilterView<ResponseType: Paginated, Content>: View where Conten
     
     @ObservedObject var viewModel: APIViewModel<ResponseType>
     
-    var createViewModel: (_ page: Int, _ org: [AuthorityKey], _ search: String) -> APIViewModel<ResponseType>
+    var createViewModel: (_ page: Int, _ org: Set<Authority>, _ search: String) -> APIViewModel<ResponseType>
     
     var appendContent: (_ prev: ResponseType, _ new: ResponseType) -> ResponseType
     
-    var endpoint: (_ page: Int, _ org: [AuthorityKey], _ search: String) -> EndpointCases
+    var endpoint: (_ page: Int, _ org: Set<Authority>, _ search: String) -> EndpointCases
     
-    var reload: (_ viewModel: APIViewModel<ResponseType>, _ page: Int, _ org: [AuthorityKey], _ search: String) -> Void
+    var reload: (_ viewModel: APIViewModel<ResponseType>, _ page: Int, _ org: Set<Authority>, _ search: String) -> Void
     
     var newContentLoader: (_ endpoint: EndpointCases) -> (@escaping (Result<ResponseType, Error>) -> Void) -> AnyCancellable
     
@@ -32,13 +58,13 @@ struct ParliamentFilterView<ResponseType: Paginated, Content>: View where Conten
     
     init(
         page: Int = 1,
-        org: [AuthorityKey] = [],
+        org: Set<Authority> = Set(),
         search: String = "",
         title: String,
-        createViewModel: @escaping (_ page: Int, _ org: [AuthorityKey], _ search: String) -> APIViewModel<ResponseType>,
+        createViewModel: @escaping (_ page: Int, _ org: Set<Authority>, _ search: String) -> APIViewModel<ResponseType>,
         appendContent: @escaping (_ prev: ResponseType, _ new: ResponseType) -> ResponseType,
-        endpoint: @escaping (_ page: Int, _ org: [AuthorityKey], _ search: String) -> EndpointCases,
-        reload: @escaping (_ viewModel: APIViewModel<ResponseType>, _ page: Int, _ org: [AuthorityKey], _ search: String) -> Void,
+        endpoint: @escaping (_ page: Int, _ org: Set<Authority>, _ search: String) -> EndpointCases,
+        reload: @escaping (_ viewModel: APIViewModel<ResponseType>, _ page: Int, _ org: Set<Authority>, _ search: String) -> Void,
         newContentLoader: @escaping (_ endpoint: EndpointCases) -> ((@escaping (Result<ResponseType, Error>) -> Void) -> AnyCancellable),
         content: @escaping (_ response: ResponseType) -> Content
     ) {
@@ -88,45 +114,16 @@ struct ParliamentFilterView<ResponseType: Paginated, Content>: View where Conten
             .navigationBarItems(trailing: Button {
                 filterView.toggle()
             } label: {
-                ZStack {
                 Image(systemName: "line.3.horizontal.decrease.circle")
                     .foregroundColor(Color("AccentColor"))
                     .font(.title2)
                     .edgesIgnoringSafeArea(.all)
-                }
             })
             .navigationTitle(title)
             .sheet(isPresented: $filterView) {
-                SheetView(title: "Filter") {
-                    List {
-                        Section {
-                            let allBinding = Binding<Bool>(
-                                get: { org.isEmpty },
-                                set: {
-                                    if $0 == true {
-                                        org = []
-                                    }
-                                }
-                            )
-                            Toggle("Alla", isOn: allBinding)
-                                .disabled(allBinding.wrappedValue)
-                        }
-                        
-                        ForEach(AuthorityKey.allCases, id: \.self) { authorityKey in
-                            let authority = AuthorityManager.authorities[authorityKey]!
-                            let activeBinding = Binding<Bool>(
-                                get: { org.contains(authorityKey) },
-                                set: {
-                                    if $0 == false {
-                                        org = org.filter { k in k != authorityKey }
-                                    } else {
-                                        org.append(authorityKey)
-                                    }
-                                }
-                            )
-                            Toggle(authority.description, isOn: activeBinding)
-                        }
-                    }
+                SheetView {
+                    ParliamentSheetFilterView(org: $org)
+                        .navigationTitle("Filter")
                 }
             }
         }

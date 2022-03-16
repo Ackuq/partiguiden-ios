@@ -139,15 +139,15 @@ class APIManager {
         return request
     }
 
-    static func getSubjects(endpoint: EndpointCases = EndpointCases.getSubjects) -> (@escaping (Result<[SubjectListEntry], Error>) -> Void) -> AnyCancellable {
+    static func getSubjects(endpoint: EndpointCases = EndpointCases.getSubjects) -> (@escaping (Result<[SubjectListEntryResponse], Error>) -> Void) -> AnyCancellable {
         { self._handleRequest(endpoint: endpoint, completion: $0) }
     }
 
-    static func getSubject(endpoint: EndpointCases) -> (@escaping (Result<Subject, Error>) -> Void) -> AnyCancellable {
+    static func getSubject(endpoint: EndpointCases) -> (@escaping (Result<SubjectResponse, Error>) -> Void) -> AnyCancellable {
         { self._handleRequest(endpoint: endpoint, completion: $0) }
     }
 
-    static func getPartyData(endpoint: EndpointCases) -> (@escaping (Result<PartyData, Error>) -> Void) -> AnyCancellable {
+    static func getPartyData(endpoint: EndpointCases) -> (@escaping (Result<PartyDataResponse, Error>) -> Void) -> AnyCancellable {
         { self._handleRequest(endpoint: endpoint, completion: $0) }
     }
 
@@ -155,7 +155,7 @@ class APIManager {
         { self._handleRequest(endpoint: endpoint, completion: $0) }
     }
 
-    static func getDocument(endpoint: EndpointCases) -> (@escaping (Result<Document, Error>) -> Void) -> AnyCancellable {
+    static func getDocument(endpoint: EndpointCases) -> (@escaping (Result<DocumentResponse, Error>) -> Void) -> AnyCancellable {
         { self._handleRequest(endpoint: endpoint, completion: $0) }
     }
 
@@ -163,7 +163,7 @@ class APIManager {
         { self._handleRequest(endpoint: endpoint, completion: $0) }
     }
     
-    static func getVote(endpoint: EndpointCases) -> (@escaping (Result<Vote, Error>) -> Void) -> AnyCancellable {
+    static func getVote(endpoint: EndpointCases) -> (@escaping (Result<VoteResponse, Error>) -> Void) -> AnyCancellable {
         { self._handleRequest(endpoint: endpoint, completion: $0) }
     }
 }

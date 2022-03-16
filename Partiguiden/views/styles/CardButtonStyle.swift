@@ -21,19 +21,11 @@ struct CardButtonStyle<Background>: ButtonStyle where Background: ShapeStyle {
     var backgroundColor: Background
     var foregroundColor: Color = .white
     var usePadding: Bool = true
-    var useSpacer: Bool = true
 
     func makeBody(configuration: Configuration) -> some View {
-        HStack {
-            configuration.label
-            if useSpacer {
-                Spacer()
-            }
-        }
-        .if(usePadding) { $0.padding() }
+        configuration.label
         .foregroundColor(foregroundColor)
         .background(backgroundColor)
-        .frame(maxWidth: .infinity)
         .cornerRadius(20)
         .opacity(configuration.isPressed ? 0.75 : 1)
     }
