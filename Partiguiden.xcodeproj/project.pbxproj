@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		770A717427E13393009E4641 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770A717327E13393009E4641 /* UIImage.swift */; };
+		770A717627E142F8009E4641 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770A717527E142F8009E4641 /* UIColor.swift */; };
+		770A717827E14D6C009E4641 /* VoteSummaryChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770A717727E14D6C009E4641 /* VoteSummaryChartView.swift */; };
+		77208B2A27E1E44600328D22 /* VoteDetailChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77208B2927E1E44600328D22 /* VoteDetailChartView.swift */; };
+		77208B2C27E1FB3600328D22 /* ChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77208B2B27E1FB3600328D22 /* ChartMarkerView.swift */; };
+		7726B21227DFEFF200E071F5 /* PopableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7726B21127DFEFF200E071F5 /* PopableView.swift */; };
+		77735BCA27E1DBE400611EF2 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77735BC927E1DBE400611EF2 /* ColorUtils.swift */; };
 		779760F227D13F3A008E8559 /* PartiguidenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779760F127D13F3A008E8559 /* PartiguidenApp.swift */; };
 		779760F427D13F3A008E8559 /* SubjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779760F327D13F3A008E8559 /* SubjectsView.swift */; };
 		779760F627D13F3A008E8559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 779760F527D13F3A008E8559 /* Assets.xcassets */; };
@@ -60,6 +67,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		770A717327E13393009E4641 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		770A717527E142F8009E4641 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		770A717727E14D6C009E4641 /* VoteSummaryChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteSummaryChartView.swift; sourceTree = "<group>"; };
+		77208B2927E1E44600328D22 /* VoteDetailChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteDetailChartView.swift; sourceTree = "<group>"; };
+		77208B2B27E1FB3600328D22 /* ChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartMarkerView.swift; sourceTree = "<group>"; };
+		7726B21127DFEFF200E071F5 /* PopableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopableView.swift; sourceTree = "<group>"; };
+		77735BC927E1DBE400611EF2 /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		779760EE27D13F3A008E8559 /* Partiguiden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Partiguiden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		779760F127D13F3A008E8559 /* PartiguidenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartiguidenApp.swift; sourceTree = "<group>"; };
 		779760F327D13F3A008E8559 /* SubjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectsView.swift; sourceTree = "<group>"; };
@@ -124,6 +138,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		770A717227E13386009E4641 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				770A717327E13393009E4641 /* UIImage.swift */,
+				770A717527E142F8009E4641 /* UIColor.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		7748827F27DF6A0C00304937 /* charts */ = {
+			isa = PBXGroup;
+			children = (
+				770A717727E14D6C009E4641 /* VoteSummaryChartView.swift */,
+				77208B2927E1E44600328D22 /* VoteDetailChartView.swift */,
+				77208B2B27E1FB3600328D22 /* ChartMarkerView.swift */,
+			);
+			path = charts;
+			sourceTree = "<group>";
+		};
 		779760E527D13F3A008E8559 = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				7797612B27D16D04008E8559 /* Info.plist */,
+				770A717227E13386009E4641 /* extensions */,
 				7797612827D15EFE008E8559 /* structs */,
 				7797612427D154B1008E8559 /* managers */,
 				77B7C3BA27D6AB5C007C7927 /* utils */,
@@ -237,12 +271,14 @@
 		7797613027D2A781008E8559 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				7748827F27DF6A0C00304937 /* charts */,
 				77B7C3B627D5450C007C7927 /* AsyncContentView.swift */,
 				77B7C3B427D54212007C7927 /* LoadingView.swift */,
 				77A7218927D95364000B9388 /* SheetView.swift */,
 				77AADA2F27DB6D5900ED4DAE /* HTMLView.swift */,
 				77AADA3D27DBAC1100ED4DAE /* ParliamentFilterView.swift */,
 				77AADA4327DD597B00ED4DAE /* ErrorView.swift */,
+				7726B21127DFEFF200E071F5 /* PopableView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -267,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				77B7C3BB27D6ABA8007C7927 /* HTMLParser.swift */,
+				77735BC927E1DBE400611EF2 /* ColorUtils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -287,6 +324,8 @@
 			dependencies = (
 			);
 			name = Partiguiden;
+			packageProductDependencies = (
+			);
 			productName = Partiguiden;
 			productReference = 779760EE27D13F3A008E8559 /* Partiguiden.app */;
 			productType = "com.apple.product-type.application";
@@ -359,6 +398,8 @@
 				Base,
 			);
 			mainGroup = 779760E527D13F3A008E8559;
+			packageReferences = (
+			);
 			productRefGroup = 779760EF27D13F3A008E8559 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -406,11 +447,15 @@
 				77AADA4027DBAECF00ED4DAE /* Paginated.swift in Sources */,
 				77B7C3BC27D6ABA8007C7927 /* HTMLParser.swift in Sources */,
 				77A7218827D8BA23000B9388 /* CardButtonStyle.swift in Sources */,
+				77208B2A27E1E44600328D22 /* VoteDetailChartView.swift in Sources */,
+				77208B2C27E1FB3600328D22 /* ChartMarkerView.swift in Sources */,
 				7797613827D2AF23008E8559 /* Parties.swift in Sources */,
 				77B7C3B927D55A79007C7927 /* APIViewModel.swift in Sources */,
 				77AADA2C27DB6AC900ED4DAE /* DocumentView.swift in Sources */,
 				7797612727D154E1008E8559 /* APIManager.swift in Sources */,
+				770A717827E14D6C009E4641 /* VoteSummaryChartView.swift in Sources */,
 				77AADA3027DB6D5900ED4DAE /* HTMLView.swift in Sources */,
+				770A717427E13393009E4641 /* UIImage.swift in Sources */,
 				779760F427D13F3A008E8559 /* SubjectsView.swift in Sources */,
 				77AADA3A27DB94C400ED4DAE /* Votes.swift in Sources */,
 				77B7C3B527D54212007C7927 /* LoadingView.swift in Sources */,
@@ -420,12 +465,15 @@
 				77C0E41827D3D2A7009326EA /* Members.swift in Sources */,
 				77C0E41627D3D12B009326EA /* PartyView.swift in Sources */,
 				77A7218327D7EAFD000B9388 /* ParliamentDecisions.swift in Sources */,
+				770A717627E142F8009E4641 /* UIColor.swift in Sources */,
 				779760F227D13F3A008E8559 /* PartiguidenApp.swift in Sources */,
 				77AADA3E27DBAC1100ED4DAE /* ParliamentFilterView.swift in Sources */,
+				77735BCA27E1DBE400611EF2 /* ColorUtils.swift in Sources */,
 				77AADA4227DBF17B00ED4DAE /* VoteView.swift in Sources */,
 				7797612327D1458C008E8559 /* PartiesView.swift in Sources */,
 				77A7218127D7E99F000B9388 /* DecisionsView.swift in Sources */,
 				77AADA4427DD597B00ED4DAE /* ErrorView.swift in Sources */,
+				7726B21227DFEFF200E071F5 /* PopableView.swift in Sources */,
 				77A7218527D7FAE7000B9388 /* AuthorityManager.swift in Sources */,
 				77AADA3827DB940600ED4DAE /* VotesView.swift in Sources */,
 				77B7C3B727D5450C007C7927 /* AsyncContentView.swift in Sources */,

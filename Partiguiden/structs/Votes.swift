@@ -20,14 +20,14 @@ struct VotingResult: Decodable {
 
 struct VoteListEntry: Decodable, Identifiable {
     let id = UUID()
-
+    
     let title: String
     let authority: AuthorityKey
     let documentId: String
     let proposition: Int
     let subtitle: String
     let results: VotingResult
-
+    
     private enum CodingKeys: String, CodingKey {
         case title, authority, documentId, proposition, subtitle, results
     }
@@ -38,8 +38,11 @@ struct VoteListResponse: Decodable, Paginated {
     let votes: [VoteListEntry]
 }
 
-enum VoteDescription: String, Decodable {
-    case yes, no, refrain, abscent
+struct VoteDescription: Decodable {
+    var yes: String
+    var no: String
+    var refrain: String
+    var abscent: String
 }
 
 struct ProcessedDocument: Decodable, Identifiable {
@@ -52,17 +55,30 @@ struct AppendixItem: Decodable, Identifiable {
     let titel: String
     let dok_id: String
     let fil_url: String
-
+    
     var id: String { dok_id }
 }
 
-struct Vote {
+struct VotingParticipants: Decodable {
+    let total: VoteDescription
+    let noParty: VoteDescription
+    let S: VoteDescription
+    let M: VoteDescription
+    let SD: VoteDescription
+    let C: VoteDescription
+    let V: VoteDescription
+    let KD: VoteDescription
+    let L: VoteDescription
+    let MP: VoteDescription
+}
+
+struct Vote: Decodable {
     let title: String
     let description: String
     let authority: AuthorityKey
     let propositionText: String
     let processedDocuments: [ProcessedDocument]
     let appendix: [AppendixItem]
-    let deicision: String
-    let voting: [String: [VoteDescription: String]]
+    let decision: String
+    let voting: VotingParticipants
 }

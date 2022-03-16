@@ -16,56 +16,72 @@ enum PartyKey: String, Decodable, CaseIterable, Comparable {
 }
 
 struct PartyInfo: Identifiable {
+    @Environment(\.colorScheme) var colorScheme
+    
     let id: PartyKey
     var letter: PartyKey { id }
     let name: String
     var color: Color { Color(id.rawValue) }
     let image: Image
+    let uiImage: UIImage
 }
 
 enum PartyManager {
+    
     static let parties: [PartyKey: PartyInfo] = [
         .S: PartyInfo(
             id: .S,
             name: "Socialdemokraterna",
-            image: Image("S")
+            image: Image("S"),
+            uiImage: UIImage(imageLiteralResourceName: "S")
         ),
         .M: PartyInfo(
             id: .M,
             name: "Moderaterna",
-            image: Image("M")
+            image: Image("M"),
+            uiImage: UIImage(imageLiteralResourceName: "M")
         ),
         .SD: PartyInfo(
             id: .SD,
             name: "Sverigedemokraterna",
-            image: Image("SD")
+            image: Image("SD"),
+            uiImage: UIImage(imageLiteralResourceName: "SD")
         ),
         .C: PartyInfo(
             id: .C,
             name: "Centerpartiet",
-            image: Image("C")
+            image: Image("C"),
+            uiImage: UIImage(imageLiteralResourceName: "C")
         ),
         .V: PartyInfo(
             id: .V,
             name: "Vänsterpartiet",
-            image: Image("V")
+            image: Image("V"),
+            uiImage: UIImage(imageLiteralResourceName: "V")
         ),
         .KD: PartyInfo(
             id: .KD,
             name: "Kristdemokraterna",
-            image: Image("KD")
+            image: Image("KD"),
+            uiImage: UIImage(imageLiteralResourceName: "KD")
         ),
         .L: PartyInfo(
             id: .L,
             name: "Liberalerna",
-            image: Image("L")
+            image: Image("L"),
+            uiImage: UIImage(imageLiteralResourceName: "L")
         ),
         .MP: PartyInfo(
             id: .MP,
             name: "Miljöpartiet",
-            image: Image("MP")
+            image: Image("MP"),
+            uiImage: UIImage(imageLiteralResourceName: "MP")
         ),
     ]
+    
+    static func getPartyIndex(partyKey: PartyKey) -> Int? {
+        return Array(parties.keys).firstIndex(of: partyKey)
+    }
 
     static func createStandpointsMap(standpoints: [Standpoint]) -> [PartyKey: [Standpoint]] {
         return standpoints.reduce(into: [:]) { res, curr in

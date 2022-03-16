@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct SubjectsView: View {
-    @ObservedObject var viewModel = APIViewModel(loader: APIManager.getSubjects())
-
+    @StateObject var viewModel = APIViewModel(loader: APIManager.getSubjects())
+    
     var body: some View {
         NavigationView {
             AsyncContentView(source: viewModel) {
@@ -14,7 +14,8 @@ struct SubjectsView: View {
                 }
             }
             .navigationTitle("Ståndpunkter")
-        }.navigationViewStyle(.stack)
+        }
+        .navigationViewStyle(.stack)
     }
 }
 

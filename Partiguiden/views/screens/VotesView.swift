@@ -53,7 +53,7 @@ struct VoteCardView: View {
         let authorityInfo = AuthorityManager.authorities[vote.authority]
 
         ZStack {
-            NavigationLink(destination: EmptyView(), isActive: $isActive) {}.hidden()
+            NavigationLink(destination: VoteView(id: vote.documentId, proposition: vote.proposition), isActive: $isActive) {}.hidden()
 
             Button(action: { isActive.toggle() }) {
                 VStack(alignment: .leading) {

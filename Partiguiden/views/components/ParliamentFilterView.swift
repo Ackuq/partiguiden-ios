@@ -13,23 +13,23 @@ struct ParliamentFilterView<ResponseType: Paginated, Content>: View where Conten
     @State var org: [AuthorityKey]
     @State var search: String
     @State var filterView: Bool
-
+    
     var title: String
-
+    
     @ObservedObject var viewModel: APIViewModel<ResponseType>
-
+    
     var createViewModel: (_ page: Int, _ org: [AuthorityKey], _ search: String) -> APIViewModel<ResponseType>
-
+    
     var appendContent: (_ prev: ResponseType, _ new: ResponseType) -> ResponseType
-
+    
     var endpoint: (_ page: Int, _ org: [AuthorityKey], _ search: String) -> EndpointCases
-
+    
     var reload: (_ viewModel: APIViewModel<ResponseType>, _ page: Int, _ org: [AuthorityKey], _ search: String) -> Void
-
+    
     var newContentLoader: (_ endpoint: EndpointCases) -> (@escaping (Result<ResponseType, Error>) -> Void) -> AnyCancellable
-
+    
     @ViewBuilder var content: (_ response: ResponseType) -> Content
-
+    
     init(
         page: Int = 1,
         org: [AuthorityKey] = [],
@@ -45,11 +45,11 @@ struct ParliamentFilterView<ResponseType: Paginated, Content>: View where Conten
         self.search = search
         self.org = org
         self.page = page
-
+        
         self.title = title
-
+        
         filterView = false
-
+        
         self.createViewModel = createViewModel
         self.appendContent = appendContent
         self.endpoint = endpoint
@@ -58,7 +58,7 @@ struct ParliamentFilterView<ResponseType: Paginated, Content>: View where Conten
         self.content = content
         viewModel = createViewModel(page, org, search)
     }
-
+    
     var body: some View {
         NavigationView {
             AsyncContentView(source: viewModel) { value in
@@ -88,9 +88,12 @@ struct ParliamentFilterView<ResponseType: Paginated, Content>: View where Conten
             .navigationBarItems(trailing: Button {
                 filterView.toggle()
             } label: {
+                ZStack {
                 Image(systemName: "line.3.horizontal.decrease.circle")
                     .foregroundColor(Color("AccentColor"))
-                    .font(.title3)
+                    .font(.title2)
+                    .edgesIgnoringSafeArea(.all)
+                }
             })
             .navigationTitle(title)
             .sheet(isPresented: $filterView) {
@@ -108,7 +111,7 @@ struct ParliamentFilterView<ResponseType: Paginated, Content>: View where Conten
                             Toggle("Alla", isOn: allBinding)
                                 .disabled(allBinding.wrappedValue)
                         }
-
+                        
                         ForEach(AuthorityKey.allCases, id: \.self) { authorityKey in
                             let authority = AuthorityManager.authorities[authorityKey]!
                             let activeBinding = Binding<Bool>(
@@ -137,5 +140,15 @@ struct ParliamentFilterView<ResponseType: Paginated, Content>: View where Conten
             page = 1
             reload(viewModel, page, org, search)
         })
+    }
+}
+
+struct ParliamentFilterView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            DecisionsView()
+            DecisionsView()
+                .preferredColorScheme(.dark)
+        }
     }
 }

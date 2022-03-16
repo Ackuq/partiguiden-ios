@@ -7,9 +7,26 @@
 
 import SwiftUI
 
+class TabBarState: ObservableObject {
+    @Published var navToHome = false
+    @Published var _selectedTab = 0
+}
+
 struct TabNavigator: View {
+    @StateObject var tabBarState = TabBarState()
+    
     var body: some View {
-        TabView {
+        let selectedTab = Binding(
+            get: { tabBarState._selectedTab },
+            set: {
+                if $0 == tabBarState._selectedTab {
+                    tabBarState.navToHome.toggle()
+                }
+                tabBarState._selectedTab = $0
+            }
+        )
+        
+        TabView (selection: selectedTab) {
             SubjectsView()
                 .tabItem {
                     Image(systemName: "text.book.closed")
@@ -37,6 +54,7 @@ struct TabNavigator: View {
                 }
                 .tag(3)
         }
+        .environmentObject(tabBarState)
     }
 }
 

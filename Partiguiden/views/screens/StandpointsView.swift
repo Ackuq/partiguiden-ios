@@ -10,7 +10,7 @@ import SwiftUI
 struct PartyStandpointsListView: View {
     var standpoints: [Standpoint]
     var partyInfo: PartyInfo
-
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -37,52 +37,57 @@ struct PartyStandpointsListView: View {
 struct StandpointsView: View {
     var id: Int
     var name: String
-
+    
     @ObservedObject var viewModel: APIViewModel<Subject>
-
+    
     @State var selectedParty: PartyInfo? = nil
-
+    
     init(id: Int, name: String) {
         self.id = id
         self.name = name
         viewModel = APIViewModel(loader: APIManager.getSubject(endpoint: EndpointCases.getSubject(id: id)))
     }
-
+    
     var body: some View {
-        AsyncContentView(source: viewModel) { subject in
-            let partyStandpoints = PartyManager.createStandpointsMap(standpoints: subject.standpoints)
-            ScrollView {
-                LazyVStack {
-                    ForEach(partyStandpoints.keys.sorted(), id: \.rawValue) { party in
-                        let partyInfo = PartyManager.parties[party]!
-                        Button(action: { self.selectedParty = partyInfo }) {
-                            Text(partyInfo.name)
-                                .bold()
-                                .foregroundColor(.white)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(partyInfo.color)
-                                .cornerRadius(10)
-                                .padding(.horizontal)
+        PopableView {
+            AsyncContentView(source: viewModel) { subject in
+                let partyStandpoints = PartyManager.createStandpointsMap(standpoints: subject.standpoints)
+                ScrollView {
+                    LazyVStack {
+                        ForEach(partyStandpoints.keys.sorted(), id: \.rawValue) { party in
+                            let partyInfo = PartyManager.parties[party]!
+                            Button(action: { self.selectedParty = partyInfo }) {
+                                Text(partyInfo.name)
+                                    .bold()
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(partyInfo.color)
+                                    .cornerRadius(10)
+                                    .padding(.horizontal)
+                            }
                         }
                     }
                 }
-            }
-            .sheet(item: $selectedParty) { partyInfo in
-                let standpoints = partyStandpoints[partyInfo.id]!
-                SheetView(title: partyInfo.name) {
-                    PartyStandpointsListView(standpoints: standpoints, partyInfo: partyInfo)
+                .sheet(item: $selectedParty) { partyInfo in
+                    let standpoints = partyStandpoints[partyInfo.id]!
+                    SheetView(title: partyInfo.name) {
+                        PartyStandpointsListView(standpoints: standpoints, partyInfo: partyInfo)
+                    }
                 }
             }
         }
-        .navigationTitle(self.name)
+        .navigationTitle(name)
     }
 }
 
 struct StandpointsView_Previews: PreviewProvider {
+    static var tabBarState = TabBarState()
     static var previews: some View {
         NavigationView {
             StandpointsView(id: 3, name: "Test")
         }
+        .preferredColorScheme(.dark)
+        .environmentObject(tabBarState)
     }
 }

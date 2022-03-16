@@ -12,7 +12,7 @@ func parseHTML(html: String) -> AttributedString {
         .replacingOccurrences(of: "<b>", with: "**")
         .replacingOccurrences(of: "</b>", with: "**")
         .replacingOccurrences(of: "<p>", with: "")
-        .replacingOccurrences(of: "</p>", with: "")
+        .replacingOccurrences(of: "</p>", with: "\n")
         .replacingOccurrences(of: "<i>", with: "*")
         .replacingOccurrences(of: "</i>", with: "*")
         .replacingOccurrences(of: "<li>", with: "- ")

@@ -9,24 +9,26 @@ import Combine
 import SwiftUI
 
 class APIViewModel<ResponseType>: LoadableObject {
+    typealias Loader = (@escaping (Result<Output, Error>) -> Void) -> AnyCancellable
     typealias Output = ResponseType
-
+    
     @Published private(set) var state = LoadingState<Output>.loading
-
-    var loader: (@escaping (Result<Output, Error>) -> Void) -> AnyCancellable
+    
+    var loader: Loader
     var cancellable: AnyCancellable?
-
+    
     init(
-        loader: @escaping (@escaping (Result<Output, Error>) -> Void) -> AnyCancellable
+        loader: @escaping Loader
     ) {
         self.loader = loader
     }
-
+    
+ 
     func load(updateState: Bool = true) {
         if updateState {
             state = .fetching
         }
-
+        
         if cancellable != nil {
             cancellable!.cancel()
         }
@@ -40,7 +42,7 @@ class APIViewModel<ResponseType>: LoadableObject {
             }
         }
     }
-
+    
     func loadMoreContent(
         newContentLoader: @escaping (@escaping (Result<Output, Error>) -> Void) -> AnyCancellable,
         appendContent: @escaping (Output, Output) -> Output

@@ -14,6 +14,8 @@ let styleString: String = """
         color-scheme: light dark;
         --link-color: rgb(0, 121, 107);
         --text-color: black;
+        padding-left: 10;
+        padding-right: 10;
     }
     @media screen and (prefers-color-scheme: dark) {
         :root {
@@ -24,6 +26,7 @@ let styleString: String = """
     body * {
         color: var(--text-color) !important;
         border-color: var(--text-color) !important;
+        max-width: 100%;
     }
 
     span.Hyperlink {
@@ -56,7 +59,6 @@ struct DocumentView: View {
         AsyncContentView(source: viewModel) { document in
             HTMLView(html: headerString + styleString + document.html)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding(.horizontal)
         }
         .navigationTitle("Dokument \(documentId)")
     }

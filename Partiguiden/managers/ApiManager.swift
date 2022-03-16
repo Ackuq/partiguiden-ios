@@ -24,7 +24,8 @@ protocol Endpoint {
 extension Endpoint {
     // a default extension that creates the full URL
     var url: String {
-        var urlComponents = URLComponents(string: baseURLString + path)!
+        let formattedPath = path.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
+        var urlComponents = URLComponents(string: baseURLString + formattedPath)!
         urlComponents.queryItems = queryItems
         return urlComponents.url!.absoluteString
     }
@@ -40,6 +41,7 @@ enum EndpointCases: Endpoint {
     case getDecisions(search: String, org: String, page: Int)
     // Parliament votes
     case getVotes(search: String, org: String, page: Int)
+    case getVote(voteId: String, propositions: Int)
     // Documents
     case getDocument(id: String)
 
@@ -73,6 +75,8 @@ enum EndpointCases: Endpoint {
             return "/document/\(id)/json"
         case .getVotes:
             return "/vote"
+        case let .getVote(id, proposition):
+            return "/vote/\(id)/\(proposition)"
         }
     }
 
@@ -103,7 +107,7 @@ enum EndpointCases: Endpoint {
     }
 }
 
-enum APIManager {
+class APIManager {
     static func _handleRequest<T: Decodable>(endpoint: EndpointCases, completion: @escaping (Result<T, Error>) -> Void) -> AnyCancellable {
         let session = URLSession.shared
 
@@ -115,7 +119,7 @@ enum APIManager {
         endpoint.headers?.forEach { header in
             urlRequest.setValue(header.value as? String, forHTTPHeaderField: header.key)
         }
-
+        debugPrint("Request to \(urlRequest.url!.absoluteURL)")
         let request = session.dataTaskPublisher(for: urlRequest)
             .map { $0.data }
             .decode(type: T.self, decoder: JSONDecoder())
@@ -123,6 +127,7 @@ enum APIManager {
             .sink { resultCompletion in
                 switch resultCompletion {
                 case let .failure(error):
+                    debugPrint(error)
                     completion(.failure(error))
                 case .finished:
                     return
@@ -134,8 +139,8 @@ enum APIManager {
         return request
     }
 
-    static func getSubjects() -> (@escaping (Result<[SubjectListEntry], Error>) -> Void) -> AnyCancellable {
-        { self._handleRequest(endpoint: EndpointCases.getSubjects, completion: $0) }
+    static func getSubjects(endpoint: EndpointCases = EndpointCases.getSubjects) -> (@escaping (Result<[SubjectListEntry], Error>) -> Void) -> AnyCancellable {
+        { self._handleRequest(endpoint: endpoint, completion: $0) }
     }
 
     static func getSubject(endpoint: EndpointCases) -> (@escaping (Result<Subject, Error>) -> Void) -> AnyCancellable {
@@ -155,6 +160,10 @@ enum APIManager {
     }
 
     static func getVotes(endpoint: EndpointCases) -> (@escaping (Result<VoteListResponse, Error>) -> Void) -> AnyCancellable {
+        { self._handleRequest(endpoint: endpoint, completion: $0) }
+    }
+    
+    static func getVote(endpoint: EndpointCases) -> (@escaping (Result<Vote, Error>) -> Void) -> AnyCancellable {
         { self._handleRequest(endpoint: endpoint, completion: $0) }
     }
 }
