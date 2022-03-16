@@ -16,7 +16,6 @@ enum PartyKey: String, Decodable, CaseIterable, Comparable {
 }
 
 struct PartyInfo: Identifiable {
-    @Environment(\.colorScheme) var colorScheme
     
     let id: PartyKey
     var letter: PartyKey { id }
